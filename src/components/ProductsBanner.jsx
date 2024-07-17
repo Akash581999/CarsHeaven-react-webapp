@@ -80,13 +80,13 @@ const ProductsBanner = () => {
       <div className="relative p-4">
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
         >
           &lt;
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
         >
           &gt;
         </button>
