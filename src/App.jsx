@@ -9,6 +9,9 @@ import News from "./components/News";
 import FAQ from "./components/FAQ";
 import Contactbanner from "./components/ContactBanner";
 import AllProducts from "./Pages/AllProducts";
+import Booking from "./Pages/Booking";
+import Footer from "./components/Footer";
+import Marquee from "./components/Marquee";
 function App() {
 
 
@@ -25,6 +28,9 @@ function App() {
           <Route path="/FAQ" element={<FAQ />} />
           <Route path="/Contactbanner" element={<Contactbanner />} />
           <Route path="/AllProducts" element={<AllProducts />} />
+          <Route path="/Booking" element={<Booking />} />
+          <Route path="/Footer" element={<Footer />} />
+          <Route path="/Marquee" element={<Marquee />} />
         </Routes>
       </BrowserRouter>
     </>
