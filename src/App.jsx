@@ -17,6 +17,7 @@ import Contactbanner from "./components/Contactbanner.jsx";
 import Contact from './Pages/ContactUs';
 import Register from "../src/Pages/Register";
 import NotFoundPage from "./components/NotFoundPage.jsx";
+import Login from "./Pages/Login.jsx";
 
 
 function App() {
@@ -40,7 +41,8 @@ function App() {
           <Route path="/BoardOfDirectors" element={<BoardOfDirectors />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Register" element={<Register />} />
-          <Route path="/NotFoundPage" element={<NotFoundPage  />} />
+          <Route path="*" element={<NotFoundPage  />} />
+          <Route path="/Login" element={<Login/>} />
         </Routes>
       </BrowserRouter>
     </>
