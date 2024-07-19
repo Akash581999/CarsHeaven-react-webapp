@@ -4,7 +4,7 @@ import { FaPhone } from "react-icons/fa6";
 
 const Contactbanner = () => {
   return (
-    <section id="section-call-to-action" className="bg-color-2 pt-10 text-light bg-no-repeat bg-cover h-[18vw] bg-green-600">
+    <section id="section-call-to-action" className="bg-color-2 pt-10 text-light bg-no-repeat bg-cover h-[18vw] bg-green-600 ">
       <div className="container mx-auto bg-no-repeat bg-cover m-10">
         <div className="flex flex-wrap bg-no-repeat bg-cover">
           <div className="w-full lg:w-[22vw] lg:ml-auto px-4 bg-no-repeat text-white bg-cover">

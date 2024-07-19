@@ -1,6 +1,7 @@
 import React from 'react';
-import MainImg from '../assets/car_main.jpg'
+import MainImg from '../assets/16.jpg'
 import Footer from './../components/Footer';
+import Marquee from '../components/Marquee';
 
 const BookingForm = () => {
 
@@ -35,9 +36,9 @@ const BookingForm = () => {
         <div className='bg-black'>
         <div className='relative '>
             <img src={MainImg} alt="" className='h-[40vh] w-full object-cover' />
-            <h1 className='absolute inset-0 flex justify-center items-center text-white text-4xl font-bold'>Cars</h1>
+            <h1 className='absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold'>Quick Booking</h1>
         </div>
-        <div className='relative bottom-48 m-20 '>
+        <div className='relative bottom-48 p-10 '>
         <div className=" m-32 rounded-5 shadow  border rounded-xl bg-white" data-bgcolor="#ffffff">
             <form name="contactForm" id="booking_form" className="form-s2 grid grid-cols-1 gap-4 md:grid-cols-2 m-10 bg-white" method="post" action="#">
                 <div className="p-3">
@@ -225,9 +226,9 @@ const BookingForm = () => {
                 
                 
             </form >
-            <div id="error_message" className="error hidden border-2 p-3">Sorry there was an error sending your form.</div>
+            <div id="error_message" className="error hidden border-2">Sorry there was an error sending your form.</div>
         </div>
-        <div className='w-[72vw] h-[32vh] grid grid-cols-4 gap-10 p-8 ml-20 bg-black'>
+        <div className='w-[72vw] h-[30vh] grid grid-cols-4 gap-10 p-8 ml-20 bg-black'>
                     {data.map((item, index) => (
                         <div key={index} className='flex flex-col items-left w-[13vw] justify-between text-white'>
                             <span className='w-14 h-14 bg-green-500 flex justify-center items-center rounded-full'>
@@ -240,6 +241,7 @@ const BookingForm = () => {
             </div>
                     </div>
                     </div>
+                    <Marquee />
                     <Footer />
         </>
     );

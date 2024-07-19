@@ -6,6 +6,7 @@ import jeep from "../assets/Cars/jeep-renegade.jpg"
 import mini from "../assets/Cars/mini-cooper.jpg"
 import vw from "../assets/Cars/vw-polo.jpg"
   ;
+import Footer from './Footer';
 const ProductsBanner = () => {
   const cars = [
     {
@@ -119,6 +120,7 @@ const ProductsBanner = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

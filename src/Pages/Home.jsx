@@ -4,6 +4,7 @@ import png1 from "../assets/Pngs/car.png"
 import AddventureBanner from "../components/AddventureBanner";
 import Contactbanner from "../components/ContactBanner";
 import FAQ from "../components/FAQ";
+import Footer from "../components/Footer";
 import ProductsBanner from "../components/ProductsBanner";
 import Features from './Features';
 
@@ -137,6 +138,7 @@ function Home() {
             <AddventureBanner />
             <FAQ />
             <Contactbanner  />
+            <Footer />
         </div>
 
     )

@@ -1,15 +1,15 @@
 import React from 'react';
+import "../../src/components/Marquee.css"
 
 
 const Marquee = () => {
   const items = [
     'SUV', 'Hatchback', 'Crossover', 'Convertible', 'Sedan',
-    'Sports Car', 'Coupe', 'Minivan', 'Station Wagon', 'Truck',
-    'Minivans', 'Exotic Cars'
+    'Sports Car', 'Coupe', 'Minivan','Minivans', 'Exotic Cars'
   ];
 
   return (
-    <section aria-label="section" className="pt-10 pb-10 text-light bg-black">
+    <section aria-label="section" className=" text-light bg-green-500">
       <div className="marquee-container text-white ">
         <div className="marquee">
           {items.map((item, index) => (
