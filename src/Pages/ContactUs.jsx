@@ -1,22 +1,22 @@
-import React from 'react';
+// import React from 'react';
 import Footer from '../components/Footer';
 import MainImg from '../assets/16.jpg'
 
 const Contact = () => {
   return (
     <>
-     <div className='relative '>
-    <img src={MainImg} alt="" className='h-[40vh] w-full object-cover' />
-    <h1 className='absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold'>Contact US</h1>
-</div>
+      <div className='relative '>
+        <img src={MainImg} alt="" className='h-[40vh] w-full object-cover' />
+        <h1 className='absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold'>Contact US</h1>
+      </div>
       <div className="w-full p-40">
         {/* Main Section */}
         <div className="flex flex-rows gap-4">
-          
+
           {/* Form Section */}
           <div className="w-full lg:w-2/3 p-4 mb-4 lg:mb-0 ">
             <h3 className="text-2xl font-bold mb-4">Do you have any question?</h3>
-            
+
             <form
               name="contactForm"
               id="contact_form"
@@ -56,7 +56,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="mb-4">
                 <textarea
                   name="message"
@@ -118,7 +118,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };

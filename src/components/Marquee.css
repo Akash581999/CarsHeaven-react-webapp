@@ -19,39 +19,38 @@
   width: 100%;
   white-space: nowrap;
   background-color: #22c55e;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
   }
-  
-  /* Marquee animation */
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+  100% {
+    transform: translateX(-100%);
   }
-  
-  /* Marquee styles */
-  .marquee {
-    display: inline-block;
-    animation: marquee 15s linear infinite; /* Adjust duration as needed */
-  }
-  
-  /* Marquee item styles */
-  .marquee-item {
-    display: inline-block;
-    margin-right: 5rem; /* Adjust as needed for spacing between items */
-    font-size:5rem; /* Tailwind text-7xl equivalent */
-    /* Tailwind bg-green-500 equivalent */
-     /* Tailwind text-black equivalent */
-    font-weight: 600; /* Tailwind font-bold equivalent */
-    color: black
-  }
-  
-  /* Dot separator styles */
-  .d-item-dot {
-    margin-left: 0.5rem; /* Adjust margin as needed */
-    /* color: #fff; Adjust dot color as needed */
-    color: black;
-  }
-  
+}
+
+/* Marquee styles */
+.marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite; /* Adjust duration as needed */
+}
+
+/* Marquee item styles */
+.marquee-item {
+  display: inline-block;
+  margin-right: 5rem; /* Adjust as needed for spacing between items */
+  font-size: 5rem; /* Tailwind text-7xl equivalent */
+  /* Tailwind bg-green-500 equivalent */
+  /* Tailwind text-black equivalent */
+  font-weight: 600; /* Tailwind font-bold equivalent */
+  color: black;
+}
+
+/* Dot separator styles */
+.d-item-dot {
+  margin-left: 0.5rem; /* Adjust margin as needed */
+  /* color: #fff; Adjust dot color as needed */
+  color: black;
+}

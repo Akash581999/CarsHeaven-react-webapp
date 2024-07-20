@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import bmw from "../assets/Cars/bmw-m5.jpg";
-import ferrari from "../assets/Cars/ferrari-enzo.jpg";
+import { useState } from 'react';
+// import React from 'react';
+// import bmw from "../assets/Cars/bmw-m5.jpg";
+// import ferrari from "../assets/Cars/ferrari-enzo.jpg";
 import ford from "../assets/Cars/ford-raptor.jpg";
 import jeep from "../assets/Cars/jeep-renegade.jpg";
-import mini from "../assets/Cars/mini-cooper.jpg";
+// import mini from "../assets/Cars/mini-cooper.jpg";
 import vw from "../assets/Cars/vw-polo.jpg";
 import { MdPerson } from "react-icons/md";
 import { IoCarSportSharp } from "react-icons/io5";
@@ -115,10 +116,10 @@ const AllProducts = () => {
         // Add more car objects here...
     ];
 
-    
+
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(2000);
-    
+
     const handleMinChange = (e) => {
         const value = Math.min(Number(e.target.value), maxPrice - 1);
         setMinPrice(value);
@@ -176,30 +177,30 @@ const AllProducts = () => {
 
 
                     <div className="item_filter_group p-4 rounded-lg shadow-md bg-white">
-            <h4 className="text-lg font-semibold mb-4">Price ($)</h4>
-            <div className="price-input mb-4 flex space-x-4">
-                <div className="field flex-1">
-                    <span className="block mb-2">Min</span>
-                    <input 
-                        type="number" 
-                        className="input-min w-full p-2 border-2 bg-white border-gray-300 rounded-md"
-                        value={minPrice}
-                        onChange={handleMinChange}
-                    />
-                </div>
-                <div className="field flex-1">
-                    <span className="block mb-2">Max</span>
-                    <input 
-                        type="number" 
-                        className="input-max w-full p-2 border border-gray-300 rounded"
-                        value={maxPrice}
-                        onChange={handleMaxChange}
-                    />
-                </div>
-            </div>
-            
-            
-        </div>
+                        <h4 className="text-lg font-semibold mb-4">Price ($)</h4>
+                        <div className="price-input mb-4 flex space-x-4">
+                            <div className="field flex-1">
+                                <span className="block mb-2">Min</span>
+                                <input
+                                    type="number"
+                                    className="input-min w-full p-2 border-2 bg-white border-gray-300 rounded-md"
+                                    value={minPrice}
+                                    onChange={handleMinChange}
+                                />
+                            </div>
+                            <div className="field flex-1">
+                                <span className="block mb-2">Max</span>
+                                <input
+                                    type="number"
+                                    className="input-max w-full p-2 border border-gray-300 rounded"
+                                    value={maxPrice}
+                                    onChange={handleMaxChange}
+                                />
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
 
                 <div className="w-full md:w-2/3 h-screen">

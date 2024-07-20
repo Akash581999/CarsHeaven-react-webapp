@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
 import BackgroundImage from "../assets/11.jpg"
 
@@ -20,8 +20,8 @@ const NotFoundPage = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
-                <h1 className="text-4xl font-bold mb-4">Something's missing.</h1>
-                <p className="mb-6">Looks like this page is missing. Don't worry though, our best team is on the case.</p>
+                <h1 className="text-4xl font-bold mb-4">Something iss missing.</h1>
+                <p className="mb-6">Looks like this page is missing. Dont worry though, our best team is on the case.</p>
                 <Link to="/" className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">Go Back</Link>
               </div>
               <div className="lg:w-1/2 text-center">

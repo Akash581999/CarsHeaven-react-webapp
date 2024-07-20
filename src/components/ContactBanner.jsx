@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { FaPhone } from "react-icons/fa6";
 
 
@@ -18,10 +18,10 @@ const Contactbanner = () => {
               <span className="text-lg mb-2 leading-relaxed">Call Us Now</span>
               <span className="text-4xl font-bold">1 200 333 800</span>
               <a href="#" className="btn-main mt-5 mb-40 bg-green-500 text-white py-2 px-4 rounded font-bold">
-              Contact Us
-            </a>
+                Contact Us
+              </a>
             </div>
-            
+
           </div>
         </div>
       </div>

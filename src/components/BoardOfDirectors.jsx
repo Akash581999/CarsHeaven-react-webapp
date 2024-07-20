@@ -1,5 +1,5 @@
 // src/BoardOfDirectors.jsx
-import React from 'react';
+// import React from 'react';
 import DirMain from '../assets/BoardOfDirector/DirMain.jpg';
 import dir1 from '../assets/BoardOfDirector/dir1.jpg'
 import dir2 from '../assets/BoardOfDirector/dir2.jpg'
@@ -22,7 +22,7 @@ const BoardOfDirectors = () => {
     {
       name: 'Peter Welsh',
       title: 'Chief Technology Officer',
-      image: dir2 ,
+      image: dir2,
       social: [
         { platform: 'facebook', iconClass: 'fa-facebook' },
         { platform: 'twitter', iconClass: 'fa-twitter' },

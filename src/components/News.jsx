@@ -18,12 +18,12 @@ const News = () => {
 
     // },
     {
-        id: 2,
-        image: feedback1,
-        name: 'BMW M2',
-        attributes: ['5 seats', '2 doors', '4 wheels', 'Sedan'],
-        price: '$244'
-      },
+      id: 2,
+      image: feedback1,
+      name: 'BMW M2',
+      attributes: ['5 seats', '2 doors', '4 wheels', 'Sedan'],
+      price: '$244'
+    },
     {
       id: 2,
       image: feedback2,
@@ -38,7 +38,7 @@ const News = () => {
       attributes: ['5 seats', '2 doors', '4 wheels', 'SUV'],
       price: '$265'
     },
-    
+
     // Add more car objects here
   ];
 
@@ -106,9 +106,9 @@ const News = () => {
           ))}
         </div>
 
-      {/* Carousel Section */}
-      {/* Carousel Section */}
-      <div className="relative mt-40">
+        {/* Carousel Section */}
+        {/* Carousel Section */}
+        <div className="relative mt-40">
           <button
             onClick={prevSlide}
             className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
@@ -150,7 +150,7 @@ const News = () => {
             </div>
           </div>
         </div>
-              </div>
+      </div>
     </>
   );
 }

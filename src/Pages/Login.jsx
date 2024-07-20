@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Login= () => {
+const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
@@ -53,7 +53,7 @@ const Login= () => {
           </div>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
-          Don't have an account?{' '}
+          Dont have an account?
           <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">Register</Link>
         </p>
       </div>

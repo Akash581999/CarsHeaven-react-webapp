@@ -5,7 +5,7 @@ import "../../src/components/Marquee.css"
 const Marquee = () => {
   const items = [
     'SUV', 'Hatchback', 'Crossover', 'Convertible', 'Sedan',
-    'Sports Car', 'Coupe', 'Minivan','Minivans', 'Exotic Cars'
+    'Sports Car', 'Coupe', 'Minivan', 'Minivans', 'Exotic Cars'
   ];
 
   return (

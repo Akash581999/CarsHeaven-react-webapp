@@ -38,7 +38,7 @@ const FAQ = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {faqs.map((faq, index) => (
-          <FAQItem key={index} question={faq.question} answer={faq.answer}  />
+          <FAQItem key={index} question={faq.question} answer={faq.answer} />
         ))}
       </div>
     </div>
@@ -50,30 +50,30 @@ const FAQItem = ({ question, answer }) => {
 
   return (
     <div className="rounded-lg p-4">
-    <button
-      onClick={() => setIsOpen(!isOpen)}
-      className="flex justify-between w-full text-left text-lg font-medium text-gray-900 border-b border-green-400 pb-2" // Add border and padding bottom
-    >
-      {question}
-      <span className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
-        <svg
-          className="w-6 h-6 bg-green-600 text-white" // Update color class if needed
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </span>
-    </button>
-    {isOpen && <p className="mt-4 text-gray-700">{answer}</p>}
-  </div>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex justify-between w-full text-left text-lg font-medium text-gray-900 border-b border-green-400 pb-2" // Add border and padding bottom
+      >
+        {question}
+        <span className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+          <svg
+            className="w-6 h-6 bg-green-600 text-white" // Update color class if needed
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </span>
+      </button>
+      {isOpen && <p className="mt-4 text-gray-700">{answer}</p>}
+    </div>
   );
 };
 

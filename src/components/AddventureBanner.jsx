@@ -4,8 +4,6 @@ import BackgroundImage from "../assets/3.jpg"
 
 const AddventureBanner = () => {
     return (
-
-
         <div
             className="relative w-full h-[50vh] bg-cover bg-center"
             style={{ backgroundImage: `url(${BackgroundImage})` }}

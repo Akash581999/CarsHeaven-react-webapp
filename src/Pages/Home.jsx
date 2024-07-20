@@ -2,7 +2,7 @@
 import MainImg from "../assets/1.jpg";
 import png1 from "../assets/Pngs/car.png"
 import AddventureBanner from "../components/AddventureBanner";
-import Contactbanner from "../components/ContactBanner";
+import Contactbanner from "../components/Contactbanner";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import ProductsBanner from "../components/ProductsBanner";
@@ -12,20 +12,24 @@ function Home() {
 
     const data = [
         {
+            index: 1,
             heading: "Choose a vehicle",
             description: "Unlock unparalleled adventures and memorable journeys with our vast fleet of vehicles tailored to suit every need, taste, and destination.",
         },
         {
+            index: 1,
             heading: "Pick location & date",
             description: "Pick your ideal location and date, and let us take you on a journey filled with convenience, flexibility, and unforgettable experiences.",
 
         },
         {
+            index: 1,
             heading: "Make a booking",
             description: "Secure your reservation with ease, unlocking a world of possibilities and embarking on your next adventure with confidence.",
 
         },
         {
+            index: 1,
             heading: "Sit back & relax",
             description: "Hassle-free convenience as we take care of every detail, allowing you to unwind and embrace a journey filled with comfort.",
 
@@ -125,7 +129,7 @@ function Home() {
                     {data.map((item, index) => (
                         <div key={index} className='flex flex-col items-left w-[13vw] justify-between text-white'>
                             <span className='w-14 h-14 bg-green-500 flex justify-center items-center rounded-full'>
-                                1
+                                {index + 1}
                             </span>
                             <h1 className='text-left font-bold'>{item.heading}</h1>
                             <p className='text-left'>{item.description}</p>
@@ -137,7 +141,7 @@ function Home() {
             <ProductsBanner />
             <AddventureBanner />
             <FAQ />
-            <Contactbanner  />
+            <Contactbanner />
             <Footer />
         </div>
 
