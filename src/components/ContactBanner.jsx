@@ -2,7 +2,7 @@
 import { FaPhone } from "react-icons/fa6";
 
 
-const Contactbanner = () => {
+const ContactBanner = () => {
   return (
     <section id="section-call-to-action" className="bg-color-2 pt-10 text-light bg-no-repeat bg-cover h-[18vw] bg-green-600 ">
       <div className="container mx-auto bg-no-repeat bg-cover m-10">
@@ -29,4 +29,4 @@ const Contactbanner = () => {
   );
 }
 
-export default Contactbanner;
+export default ContactBanner;

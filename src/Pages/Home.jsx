@@ -2,7 +2,7 @@
 import MainImg from "../assets/1.jpg";
 import png1 from "../assets/Pngs/car.png"
 import AddventureBanner from "../components/AddventureBanner";
-import Contactbanner from "../components/Contactbanner";
+import ContactBanner from "../components/ContactBanner";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import ProductsBanner from "../components/ProductsBanner";
@@ -43,9 +43,9 @@ function Home() {
                 <h1 className='text-white font-semibold text-5xl'>
                     Looking for a vehicle? Youre at the right place.
                 </h1>
-                <div className='w-[72vw] h-[32vh] bg-white grid grid-cols-2 gap-4 p-4 border rounded-md'>
+                <div className='w-[72vw] h-[36vh] bg-white grid grid-cols-2 gap-4 p-4 border rounded-md'>
                     {/* Left Side */}
-                    <div className='col-span-1 flex flex-col justify-start gap-4 '>
+                    <div className='col-span-1 flex flex-col justify-start gap-4'>
                         <h1 className='font-bold'>What is your vehicle type?</h1>
                         <div className='flex items-start justify-between'>
                             <div className='h-24 w-32 bg-green-400 flex flex-col items-center justify-center p-2 rounded-lg'>
@@ -120,7 +120,7 @@ function Home() {
                                 />
                             </div>
                         </div>
-                        <button className='bg-green-500 text-white p-2 rounded mt-4 flex justify-center w-40 '>
+                        <button className='bg-green-500 text-white p-2 rounded m-4 flex justify-center w-40 '>
                             Find a Vehicle
                         </button>
                     </div>
@@ -141,7 +141,7 @@ function Home() {
             <ProductsBanner />
             <AddventureBanner />
             <FAQ />
-            <Contactbanner />
+            <ContactBanner />
             <Footer />
         </div>
 

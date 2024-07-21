@@ -1,7 +1,7 @@
 // import React from 'react'
 import MainImg from '../assets/16.jpg'
 import BoardOfDirectors from '../components/BoardOfDirectors'
-import Contactbanner from '../components/Contactbanner';
+import ContactBanner from "../components/ContactBanner";
 import Footer from '../components/Footer';
 
 const AboutUs = () => {
@@ -50,7 +50,7 @@ const AboutUs = () => {
                 </div>
             </div>
             <BoardOfDirectors />
-            <Contactbanner />
+            <ContactBanner />
             <Footer />
         </>
     )

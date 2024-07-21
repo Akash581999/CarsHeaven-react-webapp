@@ -15,10 +15,10 @@ import AboutUs from "./Pages/AboutUs";
 import BoardOfDirectors from "./components/BoardOfDirectors";
 import Contact from './Pages/ContactUs';
 import Register from "../src/Pages/Register";
-import NotFoundPage from "./components/NotFoundPage.jsx";
-import Login from "./Pages/Login.jsx";
-import Contactbanner from './components/Contactbanner.jsx';
-import CarDetail from "./components/CarDetail.jsx";
+import NotFoundPage from "./components/NotFoundPage";
+import Login from "./Pages/Login";
+import ContactBanner from './components/ContactBanner';
+import CarDetail from "./components/CarDetail";
 
 function App() {
   return (
@@ -31,10 +31,11 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Features" element={<Features />} />
           <Route path="/AllProducts" element={<AllProducts />} />
-          <Route path="/Contactbanner" element={<Contactbanner />} />
+          <Route path="/ContactBanner" element={<ContactBanner />} />
           <Route path="/ProductsBanner" element={<ProductsBanner />} />
           <Route path="/AddventureBanner" element={<AddventureBanner />} />
           <Route path="/BoardOfDirectors" element={<BoardOfDirectors />} />
+          <Route path="/CarDetail" element={<CarDetail />} />
           <Route path="/Marquee" element={<Marquee />} />
           <Route path="/Booking" element={<Booking />} />
           <Route path="/News" element={<News />} />
@@ -43,7 +44,6 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/Footer" element={<Footer />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="CarDetail" element={<CarDetail />} />
         </Routes>
       </BrowserRouter>
     </>
