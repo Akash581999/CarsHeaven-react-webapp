@@ -73,13 +73,13 @@ const Register = () => {
         <>
             <div className='relative'>
                 <img src={MainImg} alt="" className='h-[40vh] w-full object-cover' />
-                <h1 className='absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold'>Create Account</h1>
+                <h1 className='absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold'>Create Your Free Account</h1>
             </div>
-            <section aria-label="section" className=" px-20 py-10">
-                <div className="container mx-auto px-4">
-                    <div className=" mx-auto bg-white p-8">
+            <section aria-label="section" className="px-20 py-10">
+                <div className="container mx-auto px-4 w-[50%] flex justify-center items-center">
+                    <div className="mx-auto bg-white p-8">
                         <h3 className="text-2xl font-bold mb-4">Dont have an account? Register now.</h3>
-                        <p className="mb-6">Welcome to Rentaly. We are excited to have you on board. By creating an account with us, you will gain access to a range of benefits and convenient features that will enhance your car rental experience.</p>
+                        <p className="mb-6">Welcome to CarsHeaven. We are excited to have you on board. By creating an account with us, you will gain access to a range of benefits and convenient features that will enhance your car rental experience.</p>
 
                         <form
                             name="registerForm"
@@ -87,7 +87,7 @@ const Register = () => {
                             className="space-y-4"
                             method="post"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                                 <div className="field-set">
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name:</label>
                                     <input

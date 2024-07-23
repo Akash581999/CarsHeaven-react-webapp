@@ -19,6 +19,7 @@ import NotFoundPage from "./components/NotFoundPage";
 import Login from "./Pages/Login";
 import ContactBanner from './components/ContactBanner';
 import CarDetail from "./components/CarDetail";
+import UserProfile from "./Pages/UserProfile";
 // import { Toaster, toast } from 'sonner';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -72,6 +73,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Footer" element={<Footer />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         {/* <Toaster /> */}
