@@ -1,11 +1,77 @@
-// import React from 'react';
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import MainImg from '../assets/16.jpg'
 import Footer from '../components/Footer';
+// import PrivacyPolicy from "./PrivacyPolicy";
 
 const Register = () => {
+    const [modalShow, setModalShow] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [isRegitered, setIsRegitered] = useState(false);
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        rememberMe: false,
+    });
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        const val = type === "checkbox" ? checked : value;
+        setFormData({ ...formData, [name]: val });
+    };
+    // const togglePasswordVisibility = () => {
+    //     setShowPassword(!showPassword);
+    // };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const requestData = {
+            eventID: "1001",
+            addInfo: {
+                Role: "User",
+                FirstName: formData.firstName,
+                LastName: formData.lastName,
+                Email: formData.email,
+                Mobile: formData.phoneNumber,
+                UserPassword: formData.password,
+            },
+        };
+
+        try {
+            const response = await fetch("http://localhost:5164/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            const data = await response.json();
+            console.log(data, "Api response data");
+
+            if (response.ok && data.rData.rCode === 0) {
+                setIsRegitered(true);
+                alert(data.rData.rMessage || "Account created successfully!");
+            } else {
+                alert(
+                    data.rData.rMessage || "Email or mobile number already registered!"
+                );
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred while trying to register.");
+        }
+    };
+    if (isRegitered) {
+        return <Navigate to="/LoginScreen" />;
+    }
+
     return (
         <>
-            <div className='relative '>
+            <div className='relative'>
                 <img src={MainImg} alt="" className='h-[40vh] w-full object-cover' />
                 <h1 className='absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold'>Create Account</h1>
             </div>

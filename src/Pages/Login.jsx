@@ -1,7 +1,99 @@
-// import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 const Login = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [AdminEmail, setAdminEmail] = useState("");
+  const [AdminPassword, setAdminPassword] = useState("");
+
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  const handleLogin = async (e, Type) => {
+    e.preventDefault();
+
+    let requestData = {};
+
+    if (Type === "User") {
+      requestData = {
+        eventID: "1001",
+        addInfo: {
+          Role: "User",
+          UserId: email,
+          UserPassword: password,
+        },
+      };
+    } else if (Type === "Admin") {
+      requestData = {
+        eventID: "1001",
+        addInfo: {
+          Role: "Admin",
+          UserId: AdminEmail,
+          UserPassword: AdminPassword,
+        },
+      };
+    }
+
+    try {
+      const response = await fetch("http://localhost:5164/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      const data = await response.json();
+      console.log(data, "Api response data");
+      // console.log("JWT token", data.rData.rCode);
+
+      if (response.ok && data.rData.rCode !== 0) {
+        alert(data.rData.rMessage || "Login Successfully!");
+        setIsLoggedIn(true);
+        setShowAlert(true);
+        setShowToast(true);
+      } else {
+        alert(data.rData.rMessage || "Invalid Credentials!");
+        setIsLoggedIn(false);
+        setShowAlert(false);
+        setShowToast(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while trying to log in.");
+    }
+  };
+
+  if (isLoggedIn === true) {
+    if (email) {
+      return <Navigate to="/DashBoardScreen" />;
+    } else if (AdminEmail) {
+      return <Navigate to="/AdminScreen" />;
+    } else {
+      return <Navigate to="/LoginScreen" />;
+    }
+  }
+
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(!showPassword);
+  // };
+
+  // const signInWithGoogle = () => {
+  //   alert("Sign in with Google");
+  // };
+
+  // const signInWithFacebook = () => {
+  //   alert("Sign in with Facebook");
+  // };
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
