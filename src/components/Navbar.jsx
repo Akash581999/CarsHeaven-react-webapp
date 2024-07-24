@@ -8,7 +8,9 @@ function Navbar() {
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={CarsHeaven} className="h-10" alt="CarsHeaven Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            CarsHeaven
+          </span>
         </a>
         <div className="hidden w-full md:flex md:w-auto justify-center">
           <ul className="flex flex-col md:flex-row font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:border-0 md: dark: md:dark: dark:border-gray-700">
@@ -48,7 +50,9 @@ function Navbar() {
           </ul>
         </div>
         <Link to="/Login">
-          <button className='bg-green-400 px-4 py-2 font-semibold rounded-md'>Log In</button>
+          <button className="bg-green-400 px-4 py-2 font-semibold rounded-md">
+            Log In
+          </button>
         </Link>
       </div>
     </nav>
