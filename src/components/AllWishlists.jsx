@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
-// import EditCar from "./EditCar";
-// import DeleteCar from "./DeleteCar";
+// import EditWishlist from "./EditWishlist";
+// import DeleteWishlist from "./DeleteWishlist";
 
-const AllCars = (props) => {
-    const [CarsRecord, setCarsRecord] = useState([]);
-    const [editCar, setEditCar] = useState(false);
-    const [deleteCar, setDeleteCar] = useState(false);
-    const [selectedCar, setSelectedCar] = useState("");
+const AllWishlists = (props) => {
+    const [WishlistsRecord, setWishlistsRecord] = useState([]);
+    const [editWishlist, setEditWishlist] = useState(false);
+    const [deleteWishlist, setDeleteWishlist] = useState(false);
+    const [selectedWishlist, setSelectedWishlist] = useState("");
 
     useEffect(() => {
-        fetchCarsRecord();
+        fetchWishlistsRecord();
     }, []);
 
-    const fetchCarsRecord = async () => {
+    const fetchWishlistsRecord = async () => {
         const requestData = {
             eventID: "1001",
             addInfo: {
-                Car_Id: "",
+                Wishlist_Id: "",
                 UserId: "",
                 Title: "",
                 Description: "",
                 CreatedOn: "",
-                CarImageUrl: "",
+                WishlistImageUrl: "",
                 Type: "",
                 NumSongs: "",
             },
         };
         try {
-            const response = await fetch("http://localhost:5164/allCars", {
+            const response = await fetch("http://localhost:5164/allWishlists", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,78 +43,78 @@ const AllCars = (props) => {
             console.log(data, "API response data");
 
             if (data.rData && data.rData.rCode === 0) {
-                setCarsRecord(data.rData.Carsdata || []);
+                setWishlistsRecord(data.rData.Wishlistsdata || []);
             }
         } catch (error) {
             console.error("Error:", error);
-            alert(`Failed to fetch Cars: ${error}`);
-            setCarsRecord([]);
+            alert(`Failed to fetch Wishlists: ${error}`);
+            setWishlistsRecord([]);
         }
     };
 
-    const handleCarEdit = (id) => {
-        console.log("Edit this Car with ID:", id);
-        setSelectedCar(id);
-        setEditCar(true);
+    const handleWishlistEdit = (id) => {
+        console.log("Edit this Wishlist with ID:", id);
+        setSelectedWishlist(id);
+        setEditWishlist(true);
     };
 
-    const handleCarDelete = (Car) => {
-        console.log("Delete this Car:", Car);
-        setSelectedCar(Car);
-        setDeleteCar(true);
+    const handleWishlistDelete = (Wishlist) => {
+        console.log("Delete this Wishlist:", Wishlist);
+        setSelectedWishlist(Wishlist);
+        setDeleteWishlist(true);
     };
 
     return (
         <div className={`bg-${props.mode}`}>
             <section>
                 <span className="text-3xl text-info text-left mx-3 my-3">
-                    ALL Cars
+                    ALL Wishlists
                 </span>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full my-3 mx-auto text-center bg-gray-800 text-white">
                         <thead>
                             <tr>
-                                <th className="text-info px-4 py-2">Car Id</th>
+                                <th className="text-info px-4 py-2">Wishlist Id</th>
                                 <th className="text-info px-4 py-2">User Id</th>
                                 <th className="text-info px-4 py-2">Title</th>
                                 <th className="text-info px-4 py-2">Description</th>
                                 <th className="text-info px-4 py-2">Created On</th>
-                                <th className="text-info px-4 py-2">Car Image</th>
-                                <th className="text-info px-4 py-2">Car Type</th>
+                                <th className="text-info px-4 py-2">Wishlist Image</th>
+                                <th className="text-info px-4 py-2">Wishlist Type</th>
                                 <th className="text-info px-4 py-2">Num of Songs</th>
                                 <th className="text-info px-4 py-2">Options</th>
                             </tr>
                         </thead>
                         <tbody className="text-white">
-                            {CarsRecord.map((Car, index) => (
+                            {WishlistsRecord.map((Wishlist, index) => (
                                 <tr key={index}>
-                                    <td className="border px-4 py-2">{Car.Car_Id}</td>
-                                    <td className="border px-4 py-2">{Car.userId}</td>
-                                    <td className="border px-4 py-2">{Car.title}</td>
-                                    <td className="border px-4 py-2">{Car.description}</td>
-                                    <td className="border px-4 py-2">{Car.createdOn}</td>
+                                    <td className="border px-4 py-2">{Wishlist.Wishlist_Id}</td>
+                                    <td className="border px-4 py-2">{Wishlist.userId}</td>
+                                    <td className="border px-4 py-2">{Wishlist.title}</td>
+                                    <td className="border px-4 py-2">{Wishlist.description}</td>
+                                    <td className="border px-4 py-2">{Wishlist.createdOn}</td>
                                     <td className="border px-4 py-2">
                                         <img
-                                            src={Car.CarImageUrl}
-                                            alt={Car.title}
+                                            src={Wishlist.WishlistImageUrl}
+                                            alt={Wishlist.title}
                                             className="h-16 mx-auto"
                                             style={{ objectFit: "contain" }}
                                         />
                                     </td>
-                                    <td className="border px-4 py-2">{Car.type}</td>
-                                    <td className="border px-4 py-2">{Car.numSongs}</td>
+                                    <td className="border px-4 py-2">{Wishlist.type}</td>
+                                    <td className="border px-4 py-2">{Wishlist.numSongs}</td>
                                     <td className="border px-4 py-2">
                                         <button
                                             type="button"
                                             className="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded-md mx-1"
-                                            onClick={() => handleCarEdit(Car.Car_Id)}
+                                            onClick={() => handleWishlistEdit(Wishlist.Wishlist_Id)}
                                         >
                                             <i className="fas fa-edit"></i>
                                         </button>
                                         <button
                                             type="button"
                                             className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md mx-1"
-                                            onClick={() => handleCarDelete(Car)}
+                                            onClick={() => handleWishlistDelete(Wishlist)}
                                         >
                                             <i className="fas fa-trash"></i>
                                         </button>
@@ -125,19 +125,19 @@ const AllCars = (props) => {
                     </table>
                 </div>
             </section>
-            {/* {editCar && (
-                <EditCar
-                    id={selectedCar}
-                    onClose={() => setEditCar(false)}
+            {/* {editWishlist && (
+                <EditWishlist
+                    id={selectedWishlist}
+                    onClose={() => setEditWishlist(false)}
                 />
             )}
-            <DeleteCar
-                show={deleteCar}
-                onHide={() => setDeleteCar(false)}
-                id={CarsRecord.map((Car) => Car.title)}
+            <DeleteWishlist
+                show={deleteWishlist}
+                onHide={() => setDeleteWishlist(false)}
+                id={WishlistsRecord.map((Wishlist) => Wishlist.title)}
             /> */}
         </div>
     );
 };
 
-export default AllCars;
+export default AllWishlists;

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@headlessui/react": "^2.1.2",
     "alert": "^6.0.2",
     "firebase": "^10.12.4",

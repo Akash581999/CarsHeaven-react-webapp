@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
-// import EditCar from "./EditCar";
-// import DeleteCar from "./DeleteCar";
+// import EditOrder from "./EditOrder";
+// import DeleteOrder from "./DeleteOrder";
 
-const AllCars = (props) => {
-    const [CarsRecord, setCarsRecord] = useState([]);
-    const [editCar, setEditCar] = useState(false);
-    const [deleteCar, setDeleteCar] = useState(false);
-    const [selectedCar, setSelectedCar] = useState("");
+const AllOrders = (props) => {
+    const [OrdersRecord, setOrdersRecord] = useState([]);
+    const [editOrder, setEditOrder] = useState(false);
+    const [deleteOrder, setDeleteOrder] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState("");
 
     useEffect(() => {
-        fetchCarsRecord();
+        fetchOrdersRecord();
     }, []);
 
-    const fetchCarsRecord = async () => {
+    const fetchOrdersRecord = async () => {
         const requestData = {
             eventID: "1001",
             addInfo: {
-                Car_Id: "",
+                Order_Id: "",
                 UserId: "",
                 Title: "",
                 Description: "",
                 CreatedOn: "",
-                CarImageUrl: "",
+                OrderImageUrl: "",
                 Type: "",
                 NumSongs: "",
             },
         };
         try {
-            const response = await fetch("http://localhost:5164/allCars", {
+            const response = await fetch("http://localhost:5164/allOrders", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,78 +43,78 @@ const AllCars = (props) => {
             console.log(data, "API response data");
 
             if (data.rData && data.rData.rCode === 0) {
-                setCarsRecord(data.rData.Carsdata || []);
+                setOrdersRecord(data.rData.Ordersdata || []);
             }
         } catch (error) {
             console.error("Error:", error);
-            alert(`Failed to fetch Cars: ${error}`);
-            setCarsRecord([]);
+            alert(`Failed to fetch Orders: ${error}`);
+            setOrdersRecord([]);
         }
     };
 
-    const handleCarEdit = (id) => {
-        console.log("Edit this Car with ID:", id);
-        setSelectedCar(id);
-        setEditCar(true);
+    const handleOrderEdit = (id) => {
+        console.log("Edit this Order with ID:", id);
+        setSelectedOrder(id);
+        setEditOrder(true);
     };
 
-    const handleCarDelete = (Car) => {
-        console.log("Delete this Car:", Car);
-        setSelectedCar(Car);
-        setDeleteCar(true);
+    const handleOrderDelete = (Order) => {
+        console.log("Delete this Order:", Order);
+        setSelectedOrder(Order);
+        setDeleteOrder(true);
     };
 
     return (
         <div className={`bg-${props.mode}`}>
             <section>
                 <span className="text-3xl text-info text-left mx-3 my-3">
-                    ALL Cars
+                    ALL Orders
                 </span>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full my-3 mx-auto text-center bg-gray-800 text-white">
                         <thead>
                             <tr>
-                                <th className="text-info px-4 py-2">Car Id</th>
+                                <th className="text-info px-4 py-2">Order Id</th>
                                 <th className="text-info px-4 py-2">User Id</th>
                                 <th className="text-info px-4 py-2">Title</th>
                                 <th className="text-info px-4 py-2">Description</th>
                                 <th className="text-info px-4 py-2">Created On</th>
-                                <th className="text-info px-4 py-2">Car Image</th>
-                                <th className="text-info px-4 py-2">Car Type</th>
+                                <th className="text-info px-4 py-2">Order Image</th>
+                                <th className="text-info px-4 py-2">Order Type</th>
                                 <th className="text-info px-4 py-2">Num of Songs</th>
                                 <th className="text-info px-4 py-2">Options</th>
                             </tr>
                         </thead>
                         <tbody className="text-white">
-                            {CarsRecord.map((Car, index) => (
+                            {OrdersRecord.map((Order, index) => (
                                 <tr key={index}>
-                                    <td className="border px-4 py-2">{Car.Car_Id}</td>
-                                    <td className="border px-4 py-2">{Car.userId}</td>
-                                    <td className="border px-4 py-2">{Car.title}</td>
-                                    <td className="border px-4 py-2">{Car.description}</td>
-                                    <td className="border px-4 py-2">{Car.createdOn}</td>
+                                    <td className="border px-4 py-2">{Order.Order_Id}</td>
+                                    <td className="border px-4 py-2">{Order.userId}</td>
+                                    <td className="border px-4 py-2">{Order.title}</td>
+                                    <td className="border px-4 py-2">{Order.description}</td>
+                                    <td className="border px-4 py-2">{Order.createdOn}</td>
                                     <td className="border px-4 py-2">
                                         <img
-                                            src={Car.CarImageUrl}
-                                            alt={Car.title}
+                                            src={Order.OrderImageUrl}
+                                            alt={Order.title}
                                             className="h-16 mx-auto"
                                             style={{ objectFit: "contain" }}
                                         />
                                     </td>
-                                    <td className="border px-4 py-2">{Car.type}</td>
-                                    <td className="border px-4 py-2">{Car.numSongs}</td>
+                                    <td className="border px-4 py-2">{Order.type}</td>
+                                    <td className="border px-4 py-2">{Order.numSongs}</td>
                                     <td className="border px-4 py-2">
                                         <button
                                             type="button"
                                             className="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded-md mx-1"
-                                            onClick={() => handleCarEdit(Car.Car_Id)}
+                                            onClick={() => handleOrderEdit(Order.Order_Id)}
                                         >
                                             <i className="fas fa-edit"></i>
                                         </button>
                                         <button
                                             type="button"
                                             className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md mx-1"
-                                            onClick={() => handleCarDelete(Car)}
+                                            onClick={() => handleOrderDelete(Order)}
                                         >
                                             <i className="fas fa-trash"></i>
                                         </button>
@@ -125,19 +125,19 @@ const AllCars = (props) => {
                     </table>
                 </div>
             </section>
-            {/* {editCar && (
-                <EditCar
-                    id={selectedCar}
-                    onClose={() => setEditCar(false)}
+            {/* {editOrder && (
+                <EditOrder
+                    id={selectedOrder}
+                    onClose={() => setEditOrder(false)}
                 />
             )}
-            <DeleteCar
-                show={deleteCar}
-                onHide={() => setDeleteCar(false)}
-                id={CarsRecord.map((Car) => Car.title)}
+            <DeleteOrder
+                show={deleteOrder}
+                onHide={() => setDeleteOrder(false)}
+                id={OrdersRecord.map((Order) => Order.title)}
             /> */}
         </div>
     );
 };
 
-export default AllCars;
+export default AllOrders;

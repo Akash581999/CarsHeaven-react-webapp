@@ -36,8 +36,8 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/forgotpage" element={<ForgotPage />} />
           <Route path="/userprofile" element={<UserProfile />} />
-          <Route path="/userdashboard" element={<UserDashboard />} />
-          <Route path="/adminpanel" element={<AdminPanel />} />
+          <Route path="/UserDashboard" element={<UserDashboard />} />
+          <Route path="/AdminPanel" element={<AdminPanel />} />
           {/* <Route path="/Footer" element={<Footer />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
