@@ -11,8 +11,8 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import ForgotPage from "./Pages/ForgotPage";
 import UserProfile from "./Pages/UserProfile";
-// import UserDashboard from './Pages/UserDashboard';
-// import AdminPanel from './Pages/AdminPanel';
+import UserDashboard from "./Pages/UserDashboard";
+import AdminPanel from "./Pages/AdminPanel";
 // import Footer from "./components/Footer";
 import NotFoundPage from "./Pages/NotFoundPage";
 
@@ -36,8 +36,8 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/forgotpage" element={<ForgotPage />} />
           <Route path="/userprofile" element={<UserProfile />} />
-          {/* <Route path="/userdashboard" element={<UserDashboard />} /> */}
-          {/* <Route path="/adminpanel" element={<AdminPanel />} /> */}
+          <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path="/adminpanel" element={<AdminPanel />} />
           {/* <Route path="/Footer" element={<Footer />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
