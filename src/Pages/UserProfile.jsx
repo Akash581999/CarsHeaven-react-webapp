@@ -1,5 +1,6 @@
-import React from "react";
+// import React from "react";
 import { Link } from "react-router-dom";
+// import { FaInstagram } from "react-icons/fa6";
 
 const UserProfile = () => {
     return (
@@ -40,27 +41,27 @@ const UserProfile = () => {
                                 className="rounded-full mx-auto"
                                 style={{ maxWidth: "150px" }}
                             />
-                            <p className="text-gray-500 mt-2">Akash581999</p>
                             <p className="text-gray-600">Akash Kumar</p>
+                            <p className="text-gray-500 mt-2">akash581999@gmail.com</p>
                             <div className="flex justify-center space-x-2 mt-4">
                                 <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
-                                    Edit Profile Pic
+                                    Update
                                 </button>
-                                <button className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded hover:bg-gray-300">
-                                    Change Password
+                                <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700">
+                                    Remove
                                 </button>
                             </div>
                         </div>
                     </div>
 
                     <div className="flex justify-center bg-white rounded-lg shadow p-6">
-                        <div className="space-y-4">
+                        <div className="space-y-4 w-[50%]">
                             <div className="flex">
                                 <div className="w-full">
                                     <p className="font-bold">First Name</p>
                                 </div>
                                 <div className="w-full">
-                                    <p className="text-gray-600">Johnatan</p>
+                                    <p className="text-gray-600">Akash</p>
                                 </div>
                             </div>
                             <hr />
@@ -69,16 +70,25 @@ const UserProfile = () => {
                                     <p className="font-bold">Last Name</p>
                                 </div>
                                 <div className="w-full">
-                                    <p className="text-gray-600">Smith</p>
+                                    <p className="text-gray-600">Kumar</p>
                                 </div>
                             </div>
                             <hr />
                             <div className="flex">
-                                <div className="w-1/2">
+                                <div className="w-full">
+                                    <p className="font-bold">User Name</p>
+                                </div>
+                                <div className="w-full">
+                                    <p className="text-gray-600">Akash Kumar</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="flex">
+                                <div className="w-full">
                                     <p className="font-bold">Email</p>
                                 </div>
-                                <div className="w-1/2">
-                                    <p className="text-gray-600">example@example.com</p>
+                                <div className="w-full">
+                                    <p className="text-gray-600">akash581999@gmail.com</p>
                                 </div>
                             </div>
                             <hr />
@@ -87,7 +97,7 @@ const UserProfile = () => {
                                     <p className="font-bold">Mobile</p>
                                 </div>
                                 <div className="w-full">
-                                    <p className="text-gray-600">(098) 765-4321</p>
+                                    <p className="text-gray-600">(+91) 9634708314</p>
                                 </div>
                             </div>
                             <hr />
@@ -96,13 +106,21 @@ const UserProfile = () => {
                                     <p className="font-bold">Address</p>
                                 </div>
                                 <div className="w-full">
-                                    <p className="text-gray-600">Bay Area, San Francisco, CA</p>
+                                    <p className="text-gray-600">Sector 22, Gurgaon, Haryana</p>
                                 </div>
+                            </div>
+                            <div className="flex justify-center  gap-2">
+                                <button className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded hover:bg-gray-300">
+                                    Edit
+                                </button>
+                                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                                    Save
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow p-6">
+                    {/* <div className="bg-white rounded-lg shadow p-6">
                         <div className="flex flex-wrap justify-evenly space-x-4">
                             <div className="p-3">
                                 <i className="fab fa-github text-2xl" style={{ color: "#333333" }}></i>
@@ -121,13 +139,13 @@ const UserProfile = () => {
                                 <span className="ml-2">akash591999</span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex justify-center mt-4 space-x-2">
                         <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
-                            Edit
+                            Back
                         </button>
-                        <button className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded hover:bg-gray-300">
+                        <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700">
                             Save
                         </button>
                     </div>

@@ -1,5 +1,5 @@
 // import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Features from "./Pages/Features";
@@ -20,41 +20,17 @@ import Login from "./Pages/Login";
 import ContactBanner from './components/ContactBanner';
 import CarDetail from "./components/CarDetail";
 import UserProfile from "./Pages/UserProfile";
-// import { Toaster, toast } from 'sonner';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { Toaster, toast } from 'alert';
-// import Swal from "sweetalert2";
 
 function App() {
-  // const notify = () => { toast("Wow so easy!"); }
-  // const triggerSwal = () => {
-  //   Swal.fire({
-  //     title: "Custom alert!",
-  //     text: "Do you want to continue",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonText: "Yes, continue",
-  //     cancelButtonText: "No, cancel",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       Swal.fire("Saved!", "", "success");
-  //     } else if (result.isDenied) {
-  //       Swal.fire("Changes are not saved", "", "info");
-  //     }
-  //   });
-  // };
+
+  const location = useLocation();
+  const hideNavPaths = ["/userprofile", "/userdashboard", "/adminpanel"]; // Ensure paths are lowercase
+  console.log("Current Pathname: ", location.pathname);
 
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        {/* <button type="button" className="bg-green-700 text-white font-bold py-2 px-4 w-1/12 rounded hover:bg-green-600 ml-4" onClick={() => toast('My first toast')}>Give me a toast</button> */}
-        {/* <button type="button" className="bg-green-500" onClick={notify}>Notify!</button> */}
-        {/* <button type="button" className="bg-green-500" onClick={() => toast('This is a alert toast.')}>Toast alert</button> */}
-        {/* <button type="button" className="bg-red-700 text-white font-bold py-2 px-4 w-1/12 rounded hover:bg-red-600 ml-4"
-          onClick={triggerSwal}
-        ></button> */}
+      <div className="w-full min-h-screen bg-white text-black">
+        {!hideNavPaths.includes(location.pathname.toLowerCase()) && <Navbar />} {/* Convert pathname to lowercase */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/AboutUs" element={<AboutUs />} />
@@ -73,15 +49,18 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Footer" element={<Footer />} />
-          <Route path="/UserProfile" element={<UserProfile />} />
+          <Route path="/userprofile" element={<UserProfile />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        {/* <Toaster /> */}
-        {/* <ToastContainer /> */}
-        {/* <Toaster /> */}
-      </BrowserRouter>
+      </div>
     </>
   );
 }
 
-export default App;
+const AppWrapper = () => (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+
+export default AppWrapper;
