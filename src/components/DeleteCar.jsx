@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const DeleteCar = () => {
     const [searchTerm, setSearchTerm] = useState({
@@ -43,15 +43,15 @@ const DeleteCar = () => {
             const data = await response.json();
             console.log(data, "API response data");
             if (data.rData && data.rData.rCode === 0) {
-                alert(data.rData.rMessage || "Car found successfully");
+                alert(data.rData.rMessage || "Car deleted successfully");
                 setCarRecords([data.rData] || []);
             } else {
-                alert(data.rData.rMessage || "Car not found!");
+                alert(data.rData.rMessage || "Car not deleted!");
                 setCarRecords([]);
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Failed to search Car.");
+            alert("Failed to deleted Car.");
         }
     };
 
@@ -86,12 +86,12 @@ const DeleteCar = () => {
                     value={searchTerm.CarName}
                     onChange={handleInputChange}
                 />
-                <button className="bg-green-500 text-white px-4 py-2 ml-2 rounded-md" type="submit">
-                    Search
+                <button className="bg-red-500 text-white px-4 py-2 ml-2 rounded-md" type="submit">
+                    Delete
                 </button>
             </form>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                 {carRecords.map((carsdata, index) => (
                     <div key={index || carsdata.CarId} className="bg-white rounded-lg shadow-md p-4">
                         <a href="#">
@@ -110,7 +110,7 @@ const DeleteCar = () => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };
