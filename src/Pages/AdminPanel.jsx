@@ -1,6 +1,6 @@
 // import React from "react";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import CarsHeaven from "../assets/SVG Files/sportcar.svg";
 import AddCars from '../components/AddCars';
 import EditCars from "../components/EditCars";
@@ -18,6 +18,18 @@ const AdminPanel = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  // const navigate = Navigate();
+  // const handleLogout = () => {
+  //   const token = sessionStorage.getItem("Token");
+  //   if (token) {
+  //     sessionStorage.removeItem("Token");
+  //     alert("Logout successful");
+  //     navigate("/login");
+  //   } else {
+  //     alert("No token found");
+  //   }
+  // };
 
   return (
     <>
@@ -82,8 +94,14 @@ const AdminPanel = () => {
                     </Link>
                   </li>
                   <li>
+                    {/* <button
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Logout
+                    </button> */}
                     <Link
-                      to="/Login"
+                      to="/login"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Logout
