@@ -13,19 +13,18 @@ import ForgotPage from "./Pages/ForgotPage";
 import UserProfile from "./Pages/UserProfile";
 import UserDashboard from "./Pages/UserDashboard";
 import AdminPanel from "./Pages/AdminPanel";
-// import Footer from "./components/Footer";
 import NotFoundPage from "./Pages/NotFoundPage";
 import ChangePassword from './components/ChangePassword';
+import EditProfile from './components/EditProfile';
 
 function App() {
   const location = useLocation();
-  const hideNavPaths = ["/userprofile", "/userdashboard", "/adminpanel", "/changepassword"]; // Ensure paths are lowercase
+  const hideNavPaths = ["/userprofile", "/userdashboard", "/adminpanel", "/changepassword", "/editprofile"]; // Ensure paths are lowercase
   console.log("Current Pathname: ", location.pathname);
   return (
     <>
       <div className="w-full min-h-screen bg-white text-black">
         {!hideNavPaths.includes(location.pathname.toLowerCase()) && <Navbar />}
-        {/* Convert pathname to lowercase */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/AboutUs" element={<AboutUs />} />
@@ -38,9 +37,9 @@ function App() {
           <Route path="/forgotpage" element={<ForgotPage />} />
           <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/editprofile" element={<EditProfile />} />
           <Route path="/UserDashboard" element={<UserDashboard />} />
           <Route path="/AdminPanel" element={<AdminPanel />} />
-          {/* <Route path="/Footer" element={<Footer />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
