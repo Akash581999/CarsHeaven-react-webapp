@@ -214,9 +214,8 @@ const ForgotPage = () => {
                       aria-label="Toggle Password Visibility"
                     >
                       <i
-                        className={`fa ${
-                          showPassword ? "fa-eye-slash" : "fa-eye"
-                        }`}
+                        className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"
+                          }`}
                       ></i>
                     </button>
                   </div>
@@ -245,9 +244,8 @@ const ForgotPage = () => {
                       aria-label="Toggle Password Visibility"
                     >
                       <i
-                        className={`fa ${
-                          showPassword ? "fa-eye-slash" : "fa-eye"
-                        }`}
+                        className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"
+                          }`}
                       ></i>
                     </button>
                   </div>

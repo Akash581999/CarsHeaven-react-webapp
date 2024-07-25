@@ -15,10 +15,11 @@ import UserDashboard from "./Pages/UserDashboard";
 import AdminPanel from "./Pages/AdminPanel";
 // import Footer from "./components/Footer";
 import NotFoundPage from "./Pages/NotFoundPage";
+import ChangePassword from './components/ChangePassword';
 
 function App() {
   const location = useLocation();
-  const hideNavPaths = ["/userprofile", "/userdashboard", "/adminpanel"]; // Ensure paths are lowercase
+  const hideNavPaths = ["/userprofile", "/userdashboard", "/adminpanel", "/changepassword"]; // Ensure paths are lowercase
   console.log("Current Pathname: ", location.pathname);
   return (
     <>
@@ -35,6 +36,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/forgotpage" element={<ForgotPage />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/UserDashboard" element={<UserDashboard />} />
           <Route path="/AdminPanel" element={<AdminPanel />} />
