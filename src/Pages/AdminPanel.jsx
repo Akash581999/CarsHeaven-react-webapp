@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+// import React from "react";
+import { useState } from "react";
 import CarsHeaven from "../assets/SVG Files/sportcar.svg";
+import AddCars from '../components/AddCars';
+import EditCars from "../components/EditCars";
+import AllUsers from './../components/AllUsers';
 
 const AdminPanel = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('users');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleTabClick = (tabId) => {
@@ -24,6 +28,7 @@ const AdminPanel = () => {
               CarsHeaven
             </span>
           </a>
+          <p className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Admin Panel</p>
 
           {/* User Menu */}
           <div className="flex items-start space-x-3">
@@ -114,71 +119,76 @@ const AdminPanel = () => {
       </nav>
       {/* navbar ends here */}
 
-      <div className="flex">
+      <div className="flex h-[100vh]]">
         {/* Sidebar (Vertical Tabs) */}
         <div className="bg-gray-100 dark:bg-gray-800 w-48 p-4 h-[100vh]">
           <ul className="space-y-2">
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'dashboard' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('dashboard')}
+                className={`w-full py-2 text-left font-medium ${activeTab === 'users' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
+                onClick={() => handleTabClick('users')}
                 type="button"
               >
-                Dashboard
+                All Users
               </button>
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'search' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('search')}
+                className={`w-full py-2 text-left font-medium ${activeTab === 'add' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
+                onClick={() => handleTabClick('add')}
                 type="button"
               >
-                Search
+                Add Car
               </button>
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'wishlist' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('wishlist')}
+                className={`w-full py-2 text-left font-medium ${activeTab === 'edit' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
+                onClick={() => handleTabClick('Edit')}
                 type="button"
               >
-                Wishlist
+                Edit Car
               </button>
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'orders' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('orders')}
+                className={`w-full py-2 text-left font-medium ${activeTab === 'delete' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
+                onClick={() => handleTabClick('delete')}
                 type="button"
               >
-                Orders
+                Delete Car
               </button>
             </li>
+            <li>
+              <button
+                className={`w-full py-2 text-left font-medium ${activeTab === 'get' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
+                onClick={() => handleTabClick('get')}
+                type="button"
+              >
+                Get Car
+              </button>
+            </li>
+
           </ul>
         </div>
 
         {/* Content Area */}
         <div className="flex-1 p-4">
           {/* Tab Content */}
-          <div className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab !== 'dashboard' && 'hidden'}`}>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>.
-            </p>
+          <div className={`${activeTab !== 'users' && 'hidden'}`}>
+            <AllUsers />
           </div>
-          <div className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab !== 'search' && 'hidden'}`}>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Search tab's associated content</strong>.
-            </p>
+          <div className={`${activeTab !== 'add' && 'hidden'}`}>
+            <AddCars />
           </div>
-          <div className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab !== 'wishlist' && 'hidden'}`}>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Wishlist tab's associated content</strong>.
-            </p>
+          <div className={`${activeTab !== 'Edit' && 'hidden'}`}>
+            <EditCars />
           </div>
-          <div className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab !== 'orders' && 'hidden'}`}>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Orders tab's associated content</strong>.
-            </p>
+          <div className={`${activeTab !== 'delete' && 'hidden'}`}>
+            {/* <EditCars /> */}
+          </div>
+          <div className={`${activeTab !== 'get' && 'hidden'}`}>
+            {/* <EditCars /> */}
           </div>
         </div>
       </div>

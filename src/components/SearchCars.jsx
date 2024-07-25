@@ -1,45 +1,36 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
 const SearchCars = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [cars, setCars] = useState([]);
+  const [searchTerm, setSearchTerm] = useState({
+    CarId: "",
+    BrandName: "",
+    CarName: "",
+    CarType: "",
+  });
+  const [carRecords, setCarRecords] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://api.example.com/cars?q=${encodeURIComponent(searchTerm)}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setCars(data.results); // Assuming the API returns an array of car objects
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (searchTerm !== "") {
-      fetchData();
-    } else {
-      setCars([]); // Clear cars if search term is empty
-    }
-  }, [searchTerm]);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSearchTerm((prevTerm) => ({
+      ...prevTerm,
+      [name]: value,
+    }));
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     const requestData = {
-      eventID: "1015",
+      eventID: "1004",
       addInfo: {
-        Car_Id: CarData.Car_Id,
-        Title: CarData.title,
-        Description: CarData.description,
+        CarId: searchTerm.CarId,
+        BrandName: searchTerm.BrandName,
+        CarName: searchTerm.CarName,
+        CarType: searchTerm.CarType,
       },
     };
 
     try {
-      const response = await fetch("http://localhost:5164/Cars/id", {
+      const response = await fetch("http://localhost:2005/cars", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,10 +45,10 @@ const SearchCars = () => {
       console.log(data, "API response data");
       if (data.rData && data.rData.rCode === 0) {
         alert(data.rData.rMessage || "Car found successfully");
-        setCarsRecord([data.rData]);
+        setCarRecords([data.rData] || []);
       } else {
         alert(data.rData.rMessage || "Car not found!");
-        setCarsRecord([]);
+        setCarRecords([]);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -67,27 +58,60 @@ const SearchCars = () => {
 
   return (
     <div className="container mx-auto">
-      <form className="flex items-center justify-between border border-gray-300 p-4 rounded-md shadow-sm">
+      <form onSubmit={handleSearch} className="flex items-center justify-between border border-gray-300 p-4 rounded-md shadow-sm">
         <label htmlFor="SearchCars" className="font-bold text-primary text-xl">
           Search:
         </label>
         <input
           id="SearchCars"
-          className="form-input rounded-md w-[100vw] h-10 px-3 ml-2"
+          name="CarId"
+          className="form-input rounded-md w-1/4 h-10 px-3 ml-2"
           type="search"
-          placeholder="Search cars..."
-          onChange={handleSearch}
+          placeholder="Car ID"
+          value={searchTerm.CarId}
+          onChange={handleInputChange}
+        />
+        <input
+          name="BrandName"
+          className="form-input rounded-md w-1/4 h-10 px-3 ml-2"
+          type="search"
+          placeholder="Brand Name"
+          value={searchTerm.BrandName}
+          onChange={handleInputChange}
+        />
+        <input
+          name="CarName"
+          className="form-input rounded-md w-1/4 h-10 px-3 ml-2"
+          type="search"
+          placeholder="Car Name"
+          value={searchTerm.CarName}
+          onChange={handleInputChange}
+        />
+        <input
+          name="CarType"
+          className="form-input rounded-md w-1/4 h-10 px-3 ml-2"
+          type="search"
+          placeholder="Car Type"
+          value={searchTerm.CarType}
+          onChange={handleInputChange}
         />
         <button className="bg-green-500 text-white px-4 py-2 ml-2 rounded-md" type="submit">
-          <i className="fas fa-search">Search</i>
+          Search
         </button>
       </form>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {cars.map((car) => (
-          <div key={car.id} className="bg-white rounded-lg shadow-md p-4">
-            <h2 className="text-xl font-bold text-gray-800">{car.name}</h2>
-            <p className="text-sm text-gray-600">{car.description}</p>
+        {carRecords.map((carsdata, index) => (
+          <div key={index || carsdata.CarId} className="bg-white rounded-lg shadow-md p-4">
+            <a href="#">
+              <img
+                className="object-cover w-full h-64"
+                src={carsdata.CarPic || "/path/to/default/image.jpg"}
+                alt={carsdata.CarName}
+              />
+            </a>
+            <h2 className="text-xl font-bold text-gray-800">{carsdata.CarName}</h2>
+            <p className="text-sm text-gray-600">{carsdata.Description}</p>
             <div className="mt-4 flex justify-end">
               <a href="#" className="text-blue-500 hover:text-blue-700">
                 View Details

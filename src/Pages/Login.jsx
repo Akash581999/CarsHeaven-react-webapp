@@ -53,9 +53,11 @@ const Login = () => {
 
       const data = await response.json();
       console.log(data, "Api response data");
-      console.log("JWT token", data.rData.rCode);
+      console.log("JWT token", data.rData.Token);
 
-      if (response.ok && data.rData.rCode !== 0) {
+      if (response.ok && data.rData.Token !== 0) {
+        const token = data.rData.Token;
+        sessionStorage.setItem("Token", token)
         toast(data.rData.rMessage || "Login Successfully!");
         setIsLoggedIn(true);
       } else {
@@ -69,10 +71,10 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    if (userEmail) {
-      return <Navigate to="/DashBoardScreen" />;
-    } else if (adminEmail) {
-      return <Navigate to="/AdminScreen" />;
+    if (activeTab === "User") {
+      return <Navigate to="/UserDashboard" />;
+    } else if (activeTab === "Admin") {
+      return <Navigate to="/AdminPanel" />;
     } else {
       return <Navigate to="/LoginScreen" />;
     }
@@ -102,21 +104,19 @@ const Login = () => {
             <div className="flex justify-center mb-4">
               <button
                 onClick={() => setActiveTab("User")}
-                className={`px-4 py-2 ${
-                  activeTab === "User"
-                    ? "bg-green-500 text-white"
-                    : "bg-gray-200 text-gray-800"
-                } rounded-l-md`}
+                className={`px-4 py-2 ${activeTab === "User"
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-200 text-gray-800"
+                  } rounded-l-md`}
               >
                 User
               </button>
               <button
                 onClick={() => setActiveTab("Admin")}
-                className={`px-4 py-2 ${
-                  activeTab === "Admin"
-                    ? "bg-green-500 text-white"
-                    : "bg-gray-200 text-gray-800"
-                } rounded-r-md`}
+                className={`px-4 py-2 ${activeTab === "Admin"
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-200 text-gray-800"
+                  } rounded-r-md`}
               >
                 Admin
               </button>

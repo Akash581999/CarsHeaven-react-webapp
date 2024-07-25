@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from "react";
-// import EditCar from "./EditCar";
-// import DeleteCar from "./DeleteCar";
+// import React from "react";
+import { useEffect, useState } from "react";
 
-const AllCars = (props) => {
-    const [CarsRecord, setCarsRecord] = useState([]);
-    const [editCar, setEditCar] = useState(false);
-    const [deleteCar, setDeleteCar] = useState(false);
-    const [selectedCar, setSelectedCar] = useState("");
+const AllCars = () => {
+    const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        fetchCarsRecord();
+        fetchData();
     }, []);
 
-    const fetchCarsRecord = async () => {
+    const fetchData = async () => {
         const requestData = {
-            eventID: "1001",
+            eventID: "1005",
             addInfo: {
-                Car_Id: "",
-                UserId: "",
-                Title: "",
-                Description: "",
-                CreatedOn: "",
-                CarImageUrl: "",
-                Type: "",
-                NumSongs: "",
+                CarId: "",
+                BrandName: "",
+                CarName: "",
+                CarType: "",
             },
         };
         try {
-            const response = await fetch("http://localhost:5164/allCars", {
+            const response = await fetch("http://localhost:2005/cars", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,99 +35,83 @@ const AllCars = (props) => {
             console.log(data, "API response data");
 
             if (data.rData && data.rData.rCode === 0) {
-                setCarsRecord(data.rData.Carsdata || []);
+                console.log(data.rData.carss, "cars data"); // Ensure data structure is correct
+                setCars(data.rData.carss || []);
             }
         } catch (error) {
             console.error("Error:", error);
-            alert(`Failed to fetch Cars: ${error}`);
-            setCarsRecord([]);
+            alert(`Failed to fetch cars: ${error}`);
+            setCars([]);
         }
     };
 
-    const handleCarEdit = (id) => {
-        console.log("Edit this Car with ID:", id);
-        setSelectedCar(id);
-        setEditCar(true);
+    const handleAddCarToWishlist = (id) => {
+        console.log("Add this Car to wishlist ID:", id);
+        alert("Add this Car to wishlist ID:", id);
+        // setSelectedCar(id);
+        // setEditCar(true);
     };
 
-    const handleCarDelete = (Car) => {
-        console.log("Delete this Car:", Car);
-        setSelectedCar(Car);
-        setDeleteCar(true);
+    const handleCarRent = (Car) => {
+        console.log("Rent this Car:", Car);
+        alert("Rent this Car:", Car);
+        // setSelectedCar(Car);
+        // setDeleteCar(true);
     };
 
     return (
-        <div className={`bg-${props.mode}`}>
+        <div className="bg-white my-3 p-3">
             <section>
-                <span className="text-3xl text-info text-left mx-3 my-3">
+                <span className="text-3xl text-blue-600 text-left mx-3 my-3">
                     ALL Cars
                 </span>
-                <div className="overflow-x-auto">
-                    <table className="table-auto w-full my-3 mx-auto text-center bg-gray-800 text-white">
-                        <thead>
-                            <tr>
-                                <th className="text-info px-4 py-2">Car Id</th>
-                                <th className="text-info px-4 py-2">User Id</th>
-                                <th className="text-info px-4 py-2">Title</th>
-                                <th className="text-info px-4 py-2">Description</th>
-                                <th className="text-info px-4 py-2">Created On</th>
-                                <th className="text-info px-4 py-2">Car Image</th>
-                                <th className="text-info px-4 py-2">Car Type</th>
-                                <th className="text-info px-4 py-2">Num of Songs</th>
-                                <th className="text-info px-4 py-2">Options</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-white">
-                            {CarsRecord.map((Car, index) => (
-                                <tr key={index}>
-                                    <td className="border px-4 py-2">{Car.Car_Id}</td>
-                                    <td className="border px-4 py-2">{Car.userId}</td>
-                                    <td className="border px-4 py-2">{Car.title}</td>
-                                    <td className="border px-4 py-2">{Car.description}</td>
-                                    <td className="border px-4 py-2">{Car.createdOn}</td>
-                                    <td className="border px-4 py-2">
-                                        <img
-                                            src={Car.CarImageUrl}
-                                            alt={Car.title}
-                                            className="h-16 mx-auto"
-                                            style={{ objectFit: "contain" }}
-                                        />
-                                    </td>
-                                    <td className="border px-4 py-2">{Car.type}</td>
-                                    <td className="border px-4 py-2">{Car.numSongs}</td>
-                                    <td className="border px-4 py-2">
-                                        <button
-                                            type="button"
-                                            className="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded-md mx-1"
-                                            onClick={() => handleCarEdit(Car.Car_Id)}
-                                        >
-                                            <i className="fas fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md mx-1"
-                                            onClick={() => handleCarDelete(Car)}
-                                        >
-                                            <i className="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {cars.map((Car, index) => (
+                        <div
+                            key={index}
+                            className="max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden"
+                        >
+                            <a href="#">
+                                <img
+                                    className="object-cover w-full h-64"
+                                    src={Car.carPic || "/path/to/default/image.jpg"}
+                                    alt={Car.carName}
+                                />
+                            </a>
+                            <div className="px-5 py-4">
+                                <a href="#">
+                                    <h5 className="text-xl font-semibold text-gray-900 mb-2">
+                                        {Car.carName}
+                                    </h5>
+                                </a>
+                                <div className="mb-2 text-gray-600">
+                                    <p>Brand: {Car.brandName}</p>
+                                    <p>Type: {Car.carType}</p>
+                                    <p>Color: {Car.color}</p>
+                                    <p>Seats: {Car.seats}</p>
+                                    <p>Rent Rate: ${Car.rentRate}</p>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <button
+                                        type="button"
+                                        className="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded-md mx-1"
+                                        onClick={() => handleAddCarToWishlist(Car.carId)}
+                                    >
+                                        {/* <i className="fas fa-edit"></i> */}Add To Wishlist
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md mx-1"
+                                        onClick={() => handleCarRent(Car)}
+                                    >
+                                        {/* <i className="fas fa-trash"></i> */}Rent Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </section>
-            {/* {editCar && (
-                <EditCar
-                    id={selectedCar}
-                    onClose={() => setEditCar(false)}
-                />
-            )}
-            <DeleteCar
-                show={deleteCar}
-                onHide={() => setDeleteCar(false)}
-                id={CarsRecord.map((Car) => Car.title)}
-            /> */}
         </div>
     );
 };

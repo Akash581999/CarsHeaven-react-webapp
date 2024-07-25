@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+// import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CarsHeaven from "../assets/SVG Files/sportcar.svg";
 import AllCars from "../components/AllCars";
-import AllOrders from '../components/AllOrders';
-import AllWishlists from '../components/AllWishlists';
 import SearchCars from '../components/SearchCars';
-import VehicleCards from '../components/VehicleCards';
+// import AllOrders from '../components/AllOrders';
+// import AllWishlists from '../components/AllWishlists';
+// import VehicleCards from '../components/VehicleCards';
+// import AllProducts from './AllProducts';
+// import Booking from "./Booking";
+
 
 const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -79,12 +84,12 @@ const UserDashboard = () => {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/Login"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
-                      Sign out
-                    </a>
+                      Logout
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -166,26 +171,19 @@ const UserDashboard = () => {
         <div className="flex-1 p-4">
           {/* Tab Content */}
           <div className={`${activeTab !== 'dashboard' && 'hidden'}`}>
+            {/* <AllProducts /> */}
             <AllCars />
-            <VehicleCards />
+            {/* <VehicleCards /> */}
           </div>
-          <div className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab !== 'search' && 'hidden'}`}>
-            {/* <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Search tab's associated content</strong>.
-            </p> */}
+          <div className={`${activeTab !== 'search' && 'hidden'}`}>
             <SearchCars />
+            {/* <Booking /> */}
           </div>
           <div className={`${activeTab !== 'wishlist' && 'hidden'}`}>
-            {/* <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Wishlist tab's associated content</strong>.
-            </p> */}
-            <AllWishlists />
+            {/* <AllWishlists /> */}
           </div>
           <div className={`${activeTab !== 'orders' && 'hidden'}`}>
-            {/* <p className="text-sm text-gray-500 dark:text-gray-400">
-              This is some placeholder content for the <strong className="font-medium text-gray-800 dark:text-white">Orders tab's associated content</strong>.
-            </p> */}
-            <AllOrders />
+            {/* <AllOrders /> */}
           </div>
         </div>
       </div>
