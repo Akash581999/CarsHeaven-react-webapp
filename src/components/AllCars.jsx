@@ -65,7 +65,7 @@ const AllCars = () => {
                 <span className="text-3xl text-blue-600 text-left mx-3 my-3">
                     ALL Cars
                 </span>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {cars.map((Car, index) => (
                         <div
                             key={index}
@@ -89,7 +89,7 @@ const AllCars = () => {
                                     <p>Type: {Car.carType}</p>
                                     <p>Color: {Car.color}</p>
                                     <p>Seats: {Car.seats}</p>
-                                    <p>Rent Rate: ${Car.rentRate}</p>
+                                    <p>Rent Rate: Rs{Car.rentRate}</p>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <button

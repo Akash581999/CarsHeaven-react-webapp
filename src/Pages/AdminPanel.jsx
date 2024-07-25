@@ -1,9 +1,12 @@
 // import React from "react";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import CarsHeaven from "../assets/SVG Files/sportcar.svg";
 import AddCars from '../components/AddCars';
 import EditCars from "../components/EditCars";
 import AllUsers from './../components/AllUsers';
+import SearchCars from "../components/SearchCars";
+import DeleteCar from "../components/DeleteCar";
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('users');
@@ -19,8 +22,8 @@ const AdminPanel = () => {
   return (
     <>
       {/* navbar starts here */}
-      <nav className="bg-white border-b border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-2xl flex items-center justify-between mx-auto px-4 py-3">
+      <nav className="bg-white border-b border-gray-200 dark:bg-gray-800">
+        <div className="relative max-w-screen-2xl flex items-center justify-between mx-auto px-4 py-3 ">
           {/* Logo and Brand Name */}
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={CarsHeaven} className="h-12" alt="CarsHeaven Logo" />
@@ -49,42 +52,42 @@ const AdminPanel = () => {
             {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute right-10 mt-12 w-56 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-700 dark:divide-gray-600">
-                <div className="px-4 py-3">
+                <div className="px-4 py-3 relative">
                   <span className="block text-sm font-medium text-gray-900 dark:text-white">Akash Kumar</span>
                   <span className="block text-sm text-gray-500 truncate dark:text-gray-400">akash581999@gmail.com</span>
                 </div>
                 <ul className="py-2">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/userprofile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       My Profile
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/userprofile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Edit Profile
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/changepassword"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Change Password
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/Login"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
-                      Sign out
-                    </a>
+                      Logout
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -121,8 +124,8 @@ const AdminPanel = () => {
 
       <div className="flex h-[100vh]]">
         {/* Sidebar (Vertical Tabs) */}
-        <div className="bg-gray-100 dark:bg-gray-800 w-48 p-4 h-[100vh]">
-          <ul className="space-y-2">
+        <div className="bg-gray-100 dark:bg-gray-800 w-48 p-4 h-[1600px] relative bottom-[1px]">
+          <ul className="space-y-2 ">
             <li>
               <button
                 className={`w-full py-2 text-left font-medium ${activeTab === 'users' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
@@ -185,10 +188,10 @@ const AdminPanel = () => {
             <EditCars />
           </div>
           <div className={`${activeTab !== 'delete' && 'hidden'}`}>
-            {/* <EditCars /> */}
+            <DeleteCar />
           </div>
           <div className={`${activeTab !== 'get' && 'hidden'}`}>
-            {/* <EditCars /> */}
+            <SearchCars />
           </div>
         </div>
       </div>

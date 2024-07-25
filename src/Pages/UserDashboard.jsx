@@ -25,7 +25,7 @@ const UserDashboard = () => {
   return (
     <>
       {/* navbar starts here */}
-      <nav className="bg-white border-b border-gray-200 dark:bg-gray-900">
+      <nav className="bg-white border-b border-gray-200 dark:bg-gray-800">
         <div className="max-w-screen-2xl flex items-center justify-between mx-auto px-4 py-3">
           {/* Logo and Brand Name */}
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -60,28 +60,28 @@ const UserDashboard = () => {
                 </div>
                 <ul className="py-2">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/userprofile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       My Profile
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/userprofile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Edit Profile
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/changepassword"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Change Password
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link
@@ -126,7 +126,7 @@ const UserDashboard = () => {
 
       <div className="flex">
         {/* Sidebar (Vertical Tabs) */}
-        <div className="bg-gray-100 dark:bg-gray-800 w-48 p-4 h-[100vh]">
+        <div className="bg-gray-100 dark:bg-gray-800 w-48 p-4 h-[2200px] relative bottom-[1px]">
           <ul className="space-y-2">
             <li>
               <button

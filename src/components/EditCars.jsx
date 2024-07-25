@@ -42,7 +42,7 @@ const EditCars = () => {
         e.preventDefault();
 
         const requestData = {
-            eventID: "1001",
+            eventID: "1002",
             addInfo: {
                 CarId: CarData.CarId,
                 BrandName: CarData.BrandName,
@@ -77,14 +77,14 @@ const EditCars = () => {
             console.log(data, "API response Car data");
 
             if (data.rData && data.rData.rCode === 0) {
-                alert(data.rData.rMessage || "Car added successfully!");
+                alert(data.rData.rMessage || "Car edited successfully!");
                 resetForm();
             } else {
-                alert(data.rData.rMessage || "Failed to add Car.");
+                alert(data.rData.rMessage || "Failed to edit Car.");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert(`Some error occurred, can't add Car now: ${error}`);
+            alert(`Some error occurred, can't edit Car now: ${error}`);
             resetForm();
         }
     };

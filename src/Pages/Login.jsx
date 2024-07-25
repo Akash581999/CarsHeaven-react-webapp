@@ -58,6 +58,8 @@ const Login = () => {
       if (response.ok && data.rData.Token !== 0) {
         const token = data.rData.Token;
         sessionStorage.setItem("Token", token)
+        const userId = data.rData.UserId;
+        sessionStorage.setItem("UserId", userId)
         toast(data.rData.rMessage || "Login Successfully!");
         setIsLoggedIn(true);
       } else {

@@ -1,8 +1,167 @@
 // import React from "react";
 import { Link } from "react-router-dom";
-// import { FaInstagram } from "react-icons/fa6";
+import { useEffect, useState, useRef } from "react";
 
 const UserProfile = () => {
+
+  const [userData, setUserData] = useState({});
+  const [profilePic, setProfilePic] = useState(
+    "https://via.placeholder.com/100"
+  );
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfilePic(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const fetchUserCalled = useRef(false);
+
+  useEffect(() => {
+    if (!fetchUserCalled.current) {
+      fetchUser();
+      fetchUserCalled.current = true;
+    }
+  }, []);
+
+  let userId = sessionStorage.getItem("UserId");
+
+  console.log(userId);
+
+  const fetchUser = async () => {
+    const requestData = {
+      eventID: "1002",
+      addInfo: {
+        UserId: "",
+        Email: userId,
+      },
+    };
+
+    try {
+      const response = await fetch("http://localhost:2005/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data, "API response data");
+
+      if (data.rData && data.rData.rCode === 0) {
+        setUserData(data.rData);
+        setProfilePic(
+          data.rData.ProfilePic || "https://via.placeholder.com/100"
+        );
+      } else {
+        setUserData({});
+        alert("Failed to get user details!!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while trying to fetch user details.");
+      setUserData({});
+    }
+  };
+
+  sessionStorage.getItem("UserId");
+  let UserId = sessionStorage.getItem("UserId");
+
+  const handleUpdatePic = async () => {
+    const requestData = {
+      eventID: "1002",
+      addInfo: {
+        Email: UserId,
+        ProfilePic: profilePic,
+      },
+    };
+    console.log(requestData, "requestData");
+    try {
+      const response = await fetch("http://localhost:2005/editProfile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data, "API response data eddit pic");
+
+      if (data.rData && data.rData.rCode === 0) {
+        setUserData(data.rData);
+        setProfilePic(
+          data.rData.ProfilePic || "https://via.placeholder.com/100"
+        );
+      } else {
+        setUserData({});
+        alert("Failed to get user details!!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while trying to fetch user details.");
+      setUserData({});
+    }
+  };
+
+  const uuUserId = sessionStorage.getItem("UserId");
+  console.log("uuid for delete", uuUserId);
+
+  const handleDeletePic = async () => {
+    const requestData = {
+      eventID: "1003",
+      addInfo: {
+        Email: uuUserId,
+        ProfilePic: profilePic,
+      },
+    };
+    console.log(requestData, "requestData");
+    try {
+      const response = await fetch("http://localhost:2005/editProfile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data, "API response data eddit pic");
+
+      if (data.rData && data.rData.rCode === 0) {
+        setUserData(data.rData);
+        setProfilePic(
+          data.rData.ProfilePic || "https://via.placeholder.com/100"
+        );
+      } else {
+        setUserData({});
+        alert("Failed to get user details!!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while trying to fetch user details.");
+      setUserData({});
+    }
+  };
+
   return (
     <section className="bg-gray-200">
       <div className="container mx-auto py-4">
@@ -40,18 +199,41 @@ const UserProfile = () => {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="text-center">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                alt="avatar"
+                // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                src={profilePic}
+                alt="Profile pic"
                 className="rounded-full mx-auto"
-                style={{ maxWidth: "150px" }}
+                style={{ width: "150px" }}
               />
-              <p className="text-gray-600">Akash Kumar</p>
-              <p className="text-gray-500 mt-2">akash581999@gmail.com</p>
+              {Object.keys(userData).length > 0 ? (
+                <>
+                  <div>
+                    <p className="text-gray-600">
+                      <strong>Username:</strong> {userData.UserName}
+                    </p>
+                    <p className="text-gray-500 mt-2">
+                      <strong>Email:</strong> {userData.Email}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <p>No user data available.</p>
+              )}
+              <div className="flex justify-center items-center text-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="m-5"
+                  onChange={handleFileChange}
+                />
+              </div>
               <div className="flex justify-center space-x-2 mt-4">
-                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                <button onClick={handleUpdatePic}
+                  className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
                   Update
                 </button>
-                <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700">
+                <button onClick={handleDeletePic}
+                  className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700">
                   Remove
                 </button>
               </div>
@@ -60,59 +242,26 @@ const UserProfile = () => {
 
           <div className="flex justify-center bg-white rounded-lg shadow p-6">
             <div className="space-y-4 w-[50%]">
-              <div className="flex">
-                <div className="w-full">
-                  <p className="font-bold">First Name</p>
-                </div>
-                <div className="w-full">
-                  <p className="text-gray-600">Akash</p>
-                </div>
-              </div>
-              <hr />
-              <div className="flex">
-                <div className="w-full">
-                  <p className="font-bold">Last Name</p>
-                </div>
-                <div className="w-full">
-                  <p className="text-gray-600">Kumar</p>
-                </div>
-              </div>
-              <hr />
-              <div className="flex">
-                <div className="w-full">
-                  <p className="font-bold">User Name</p>
-                </div>
-                <div className="w-full">
-                  <p className="text-gray-600">Akash Kumar</p>
-                </div>
-              </div>
-              <hr />
-              <div className="flex">
-                <div className="w-full">
-                  <p className="font-bold">Email</p>
-                </div>
-                <div className="w-full">
-                  <p className="text-gray-600">akash581999@gmail.com</p>
-                </div>
-              </div>
-              <hr />
-              <div className="flex">
-                <div className="w-full">
-                  <p className="font-bold">Mobile</p>
-                </div>
-                <div className="w-full">
-                  <p className="text-gray-600">(+91) 9634708314</p>
-                </div>
-              </div>
-              <hr />
-              <div className="flex">
-                <div className="w-full">
-                  <p className="font-bold">Address</p>
-                </div>
-                <div className="w-full">
-                  <p className="text-gray-600">Sector 22, Gurgaon, Haryana</p>
-                </div>
-              </div>
+              {Object.keys(userData).length > 0 ? (
+                <>
+                  <div className="flex flex-col justify-center items-center">
+                    <p>
+                      <strong>Username:</strong> {userData.UserName}
+                    </p>
+                    <p>
+                      <strong>Phone:</strong> {userData.Phone}
+                    </p>
+                    <p>
+                      <strong>Email:</strong> {userData.Email}
+                    </p>
+                    <p>
+                      <strong>Address:</strong> {userData.Address}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <p>No user data available.</p>
+              )}
               <div className="flex justify-center  gap-2">
                 <button className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded hover:bg-gray-300">
                   Edit
