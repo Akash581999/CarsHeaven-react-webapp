@@ -4,7 +4,9 @@ import { Link, Navigate } from "react-router-dom";
 import img from "../assets/1.jpg";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { FaFacebookF, FaGoogle } from 'react-icons/fa';
+
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -16,7 +18,7 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState("User");
-  // const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -55,20 +57,20 @@ const Login = () => {
       console.log(data, "Api response data");
       console.log("JWT token", data.rData.Token);
 
-      if (response.ok && data.rData.Token !== 0) {
-        const token = data.rData.Token;
-        sessionStorage.setItem("Token", token)
-        const userId = data.rData.UserId;
-        sessionStorage.setItem("UserId", userId)
-        toast(data.rData.rMessage || "Login Successfully!");
+      if (response.ok && data.rData.rCode === 0 && data.rData.Token !== null) {
+        let Token = data.rData.Token;
+        sessionStorage.setItem("Token", Token)
+        let UserId = data.rData.UserId;
+        sessionStorage.setItem("UserId", UserId)
+        toast.success(data.rData.rMessage || "Login Successfully!");
         setIsLoggedIn(true);
       } else {
-        toast(data.rData.rMessage || "Invalid Credentials!");
+        toast.warning(data.rData.rMessage || "Invalid Credentials!");
         setIsLoggedIn(false);
       }
     } catch (error) {
       console.error("Error:", error);
-      toast("An error occurred while trying to log in.");
+      toast.error("An error occurred while trying to log in.");
     }
   };
 
@@ -82,9 +84,9 @@ const Login = () => {
     }
   }
 
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   // const signInWithGoogle = () => {
   //   alert("Sign in with Google");
@@ -141,6 +143,8 @@ const Login = () => {
                       onChange={(e) => setUserEmail(e.target.value)}
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       placeholder="you@example.com"
+                      minLength={5}
+                      title="Must contain @gmail.com"
                       required
                     />
                   </div>
@@ -152,15 +156,27 @@ const Login = () => {
                       Enter User Password
                     </label>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       id="userPassword"
                       name="userPassword"
                       value={userPassword}
                       onChange={(e) => setUserPassword(e.target.value)}
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       placeholder="••••••••"
+                      minLength={5}
+                      title="Must contain at least one number, one uppercase, one lowercase letter and at least 8 or more characters"
                       required
                     />
+                    <div className="relative h-6 w-8 bottom-8 left-80">
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 px-3 flex items-center"
+                        onClick={togglePasswordVisibility}
+                        aria-label="Toggle Password Visibility"
+                      >
+                        {showPassword ? <FaEye /> : <FaEyeSlash />}
+                      </button>
+                    </div>
                   </div>
                 </>
               )}
@@ -181,6 +197,8 @@ const Login = () => {
                       onChange={(e) => setAdminEmail(e.target.value)}
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       placeholder="admin@example.com"
+                      minLength={5}
+                      title="Must contain @gmail.com"
                       required
                     />
                   </div>
@@ -192,15 +210,27 @@ const Login = () => {
                       Enter Admin Password
                     </label>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       id="adminPassword"
                       name="adminPassword"
                       value={adminPassword}
                       onChange={(e) => setAdminPassword(e.target.value)}
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       placeholder="••••••••"
+                      minLength={5}
+                      title="Must contain at least one number, one uppercase, one lowercase letter and at least 8 or more characters"
                       required
                     />
+                    <div className="relative h-6 w-8 bottom-8 left-80">
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 px-3 flex items-center"
+                        onClick={togglePasswordVisibility}
+                        aria-label="Toggle Password Visibility"
+                      >
+                        {showPassword ? <FaEye /> : <FaEyeSlash />}
+                      </button>
+                    </div>
                   </div>
                 </>
               )}
@@ -248,18 +278,20 @@ const Login = () => {
                 &nbsp; Register Now
               </Link>
             </p>
-            {/* <button onClick={signInWithGoogle}
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-          ><FaGoogle />
-            Login with Google
-          </button>
-          <button onClick={signInWithFacebook}
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-          ><FaFacebookF />
-            Login with Faceboook
-          </button> */}
+            {/* <button
+              className="w-full bg-gray-100 text-white py-2 rounded mb-2"
+              onClick={signInWithGoogle}
+              aria-label="Sign in with Google"
+            >
+              <FaFacebookF />Sign in with Google
+            </button>
+            <button
+              className="w-full bg-gray-100 text-white py-2 rounded mb-2"
+              onClick={signInWithFacebook}
+              aria-label="Sign in with Facebook"
+            >
+              <FaGoogle />Sign in with Facebook
+            </button> */}
           </div>
         </div>
       </div>
