@@ -148,7 +148,7 @@ const Login = () => {
                       required
                     />
                   </div>
-                  <div>
+                  <div className="mb-4 relative">
                     <label
                       htmlFor="userPassword"
                       className="block text-sm font-medium text-gray-700"
@@ -167,16 +167,14 @@ const Login = () => {
                       title="Must contain at least one number, one uppercase, one lowercase letter and at least 8 or more characters"
                       required
                     />
-                    <div className="relative h-6 w-8 bottom-8 left-80">
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 px-3 flex items-center"
-                        onClick={togglePasswordVisibility}
-                        aria-label="Toggle Password Visibility"
-                      >
-                        {showPassword ? <FaEye /> : <FaEyeSlash />}
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 px-3 flex items-center mt-7"
+                      onClick={togglePasswordVisibility}
+                      aria-label="Toggle Password Visibility"
+                    >
+                      {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </button>
                   </div>
                 </>
               )}
@@ -202,7 +200,7 @@ const Login = () => {
                       required
                     />
                   </div>
-                  <div>
+                  <div className="mb-4 relative">
                     <label
                       htmlFor="adminPassword"
                       className="block text-sm font-medium text-gray-700"
@@ -221,16 +219,14 @@ const Login = () => {
                       title="Must contain at least one number, one uppercase, one lowercase letter and at least 8 or more characters"
                       required
                     />
-                    <div className="relative h-6 w-8 bottom-8 left-80">
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 px-3 flex items-center"
-                        onClick={togglePasswordVisibility}
-                        aria-label="Toggle Password Visibility"
-                      >
-                        {showPassword ? <FaEye /> : <FaEyeSlash />}
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 px-3 flex items-center mt-7"
+                      onClick={togglePasswordVisibility}
+                      aria-label="Toggle Password Visibility"
+                    >
+                      {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </button>
                   </div>
                 </>
               )}
@@ -294,7 +290,7 @@ const Login = () => {
             </button> */}
           </div>
         </div>
-      </div>
+      </div >
       <Footer />
     </>
   );

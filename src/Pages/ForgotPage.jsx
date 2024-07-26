@@ -2,86 +2,105 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import rst from "../assets/11.jpg";
 import Footer from "./../components/Footer";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-// import { getAuth, RecaptchaVerifier } from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA5hhEvGz4VT-rE4gXUYOpS-OLDBIfqtN0",
-  authDomain: "carsheaven-a0ebc.firebaseapp.com",
-  projectId: "carsheaven-a0ebc",
-  storageBucket: "carsheaven-a0ebc.appspot.com",
-  messagingSenderId: "760499255556",
-  appId: "1:760499255556:web:cba020ada9aa9b428b7851",
-};
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app();
-}
-
-const auth = firebase.auth();
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ForgotPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOTP] = useState("");
-  const [confirmationResult, setConfirmationResult] = useState(null);
+
+  const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [resetSuccess, setResetSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSendOTP = async (e) => {
     e.preventDefault();
+    const requestData = {
+      eventID: "1001",
+      addInfo: {
+        Phone: phoneNumber,
+      },
+    };
+
     try {
-      const phoneNo = `+91${phoneNumber}`;
-      const appVerifier = new firebase.auth.RecaptchaVerifier("reCaptcha", {
-        size: "invisible",
+      const response = await fetch("http://localhost:2005/resetPassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
       });
-      const confirmation = await auth.signInWithPhoneNumber(
-        phoneNo,
-        appVerifier
-      );
-      setConfirmationResult(confirmation);
-      alert("OTP sent to your phone number!");
+
+      const data = await response.json();
+      console.log(data, "API response data");
+
+      if (response.ok && data.rData && data.rData.rCode === 0) {
+        alert(data.rData.rMessage || "OTP sent successfully!");
+        const otp = data.rData.OTP;
+        console.log(otp);
+        alert(`Your OTP is: ${otp}`);
+        setOtpSent(true);
+      } else {
+        alert(data.rData.rMessage || "Failed to send OTP!");
+      }
     } catch (error) {
-      console.error("Error sending OTP:", error);
-      alert(`Error sending OTP: ${error.message}`);
+      console.error("Error:", error);
+      alert(`Error, Failed to send OTP!: ${error.message}`);
     }
   };
 
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
+    const requestData = {
+      eventID: "1002",
+      addInfo: {
+        Phone: phoneNumber,
+        OTP: otp,
+      },
+    };
+
     try {
-      await confirmationResult.confirm(otp);
-      setOtpVerified(true);
-      alert("OTP verified. Proceeding to reset password!");
+      const response = await fetch("http://localhost:2005/resetPassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      const data = await response.json();
+      console.log(data, "API response data");
+
+      if (response.ok && data.rData && data.rData.rCode === 0) {
+        alert(data.rData.rMessage || "OTP Verified Successfully");
+        setOtpVerified(true);
+      } else {
+        alert(data.rData.rMessage || "Failed to Verify OTP!!");
+      }
     } catch (error) {
-      alert(`Error verifying OTP: ${error.message}`);
+      console.error("Error:", error);
+      alert(`Error, Failed to Verify OTP!!: ${error.message}`);
     }
   };
 
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     const requestData = {
-      eventID: "1005",
+      eventID: "1003",
       addInfo: {
         Phone: phoneNumber,
         NewPassword: newPassword,
         ConfirmPassword: confirmPassword,
       },
     };
-    // if (newPassword !== confirmPassword) {
-    //   alert("Passwords do not match!");
-    //   return;
-    // }
+
     try {
-      // await auth.currentUser.updatePassword(newPassword);
-      const response = await fetch("http://localhost:5164/resetPassword", {
-        method: "PUT",
+      const response = await fetch("http://localhost:2005/resetPassword", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -94,24 +113,23 @@ const ForgotPage = () => {
       if (response.ok && data.rData && data.rData.rCode === 0) {
         alert(data.rData.rMessage || "Password reset successfully!");
         setResetSuccess(true);
-        setNewPassword([]);
-        setConfirmPassword([]);
       } else {
         alert(data.rData.rMessage || "Failed to reset password!!");
-        setNewPassword([]);
-        setConfirmPassword([]);
       }
     } catch (error) {
       console.error("Error:", error);
       alert(`Error resetting password: ${error.message}`);
     }
   };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  if (resetSuccess === true) {
+
+  if (resetSuccess) {
     return <Navigate to="/Login" />;
   }
+
 
   return (
     <>
@@ -124,7 +142,7 @@ const ForgotPage = () => {
             <h1 className="text-green-600 my-2 text-center text-2xl">
               Reset Password
             </h1>
-            {!confirmationResult ? (
+            {!otpSent ? (
               <form onSubmit={handleSendOTP} className="space-y-1">
                 <div className="mb-4">
                   <label
@@ -167,7 +185,7 @@ const ForgotPage = () => {
                     htmlFor="otp"
                     className="block text-gray-700 text-sm font-bold mb-2"
                   >
-                    Enter the OTP received on your phone number:
+                    Enter the OTP you received:
                   </label>
                   <input
                     type="text"
@@ -189,8 +207,8 @@ const ForgotPage = () => {
                 </div>
               </form>
             ) : (
-              <form onSubmit={handlePasswordReset} className="space-y-1">
-                <div className="mb-4">
+              <form onSubmit={handlePasswordReset} className="space-y-4">
+                <div className="mb-4 relative">
                   <label
                     htmlFor="newPassword"
                     className="block text-gray-700 text-sm font-bold mb-2"
@@ -206,21 +224,16 @@ const ForgotPage = () => {
                     onChange={(e) => setNewPassword(e.target.value)}
                     required
                   />
-                  <div className="relative mt-1">
-                    <button
-                      type="button"
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-                      onClick={togglePasswordVisibility}
-                      aria-label="Toggle Password Visibility"
-                    >
-                      <i
-                        className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"
-                          }`}
-                      ></i>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 px-3 flex items-center mt-7"
+                    onClick={togglePasswordVisibility}
+                    aria-label="Toggle Password Visibility"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 relative">
                   <label
                     htmlFor="confirmPassword"
                     className="block text-gray-700 text-sm font-bold mb-2"
@@ -236,19 +249,14 @@ const ForgotPage = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
-                  <div className="relative mt-1">
-                    <button
-                      type="button"
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-                      onClick={togglePasswordVisibility}
-                      aria-label="Toggle Password Visibility"
-                    >
-                      <i
-                        className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"
-                          }`}
-                      ></i>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 px-3 flex items-center mt-7"
+                    onClick={togglePasswordVisibility}
+                    aria-label="Toggle Password Visibility"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
                 <div className="flex items-center justify-end">
                   <button
