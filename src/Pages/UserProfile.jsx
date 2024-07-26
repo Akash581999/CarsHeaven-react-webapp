@@ -163,7 +163,7 @@ const UserProfile = () => {
   };
 
   return (
-    <section className="bg-gray-200">
+    <section className="bg-gray-200 h-screen">
       <div className="container mx-auto py-4">
         <div className="mb-4">
           <nav className="bg-white rounded p-3 shadow">
@@ -184,13 +184,13 @@ const UserProfile = () => {
                   to="/UserProfile"
                   className="text-blue-600 hover:underline"
                 >
-                  User
+                  Account
                 </Link>
               </li>
               <li>
                 <span>/</span>
               </li>
-              <li className="text-gray-500">Profile</li>
+              <li className="text-gray-500">My Profile</li>
             </ol>
           </nav>
         </div>
