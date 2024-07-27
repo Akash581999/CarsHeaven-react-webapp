@@ -14,12 +14,18 @@ import UserProfile from "./Pages/UserProfile";
 import UserDashboard from "./Pages/UserDashboard";
 import AdminPanel from "./Pages/AdminPanel";
 import NotFoundPage from "./Pages/NotFoundPage";
-import ChangePassword from './components/ChangePassword';
-import EditProfile from './components/EditProfile';
+import ChangePassword from "./components/ChangePassword";
+import EditProfile from "./components/EditProfile";
 
 function App() {
   const location = useLocation();
-  const hideNavPaths = ["/userprofile", "/userdashboard", "/adminpanel", "/changepassword", "/editprofile"]; // Ensure paths are lowercase
+  const hideNavPaths = [
+    "/userprofile",
+    "/userdashboard",
+    "/adminpanel",
+    "/changepassword",
+    "/editprofile",
+  ]; // Ensure paths are lowercase
   console.log("Current Pathname: ", location.pathname);
   return (
     <>

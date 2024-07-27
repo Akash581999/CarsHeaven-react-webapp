@@ -43,41 +43,41 @@ const AllUsers = () => {
     return (
         <div className="container mx-auto py-8">
             <h1 className="text-2xl font-semibold mb-6">Users Table</h1>
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 bg-black">
+            <div className="shadow overflow-hidden">
+                <table className="min-w-full divide-y text-white bg-black">
                     <thead className="bg-gray-50 ">
-                        <tr className="bg-black">
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <tr className="bg-gray-800">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 ID
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 FirstName
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 LastName
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 User Name
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Email
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Phone
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Address
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Registration Date
                             </th>
-                            {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {/* <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Last Login
                             </th> */}
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Role
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                 Profile Pic
                             </th>
                         </tr>

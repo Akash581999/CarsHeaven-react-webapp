@@ -56,12 +56,12 @@ const AdminPanel = () => {
             <div className="flex justify-end items-center space-x-5 left-80">
               <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex rounded-full focus:ring-1 focus:dark:focus:ring-white"
                 onClick={toggleDropdown}
               >
                 <span className="sr-only">Open user menu</span>
                 <img
-                  className="w-10 h-8 rounded-full"
+                  className="w-16 h-10 rounded-full"
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                   alt="user photo"
                 />
