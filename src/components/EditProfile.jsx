@@ -7,6 +7,8 @@ import { HiPhoneMissedCall } from "react-icons/hi";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({});
+  const [updatePic, setUpdatePic] = useState({});
+
   const [profilePic, setProfilePic] = useState(
     "https://via.placeholder.com/100"
   );
@@ -102,7 +104,7 @@ const EditProfile = () => {
       }
 
       const data = await response.json();
-      console.log(data, "API response data eddit pic");
+      console.log(data, "API response data edit pic");
 
       if (data.rData && data.rData.rCode === 0) {
         setUserData(data.rData);
@@ -293,7 +295,8 @@ const EditProfile = () => {
                   </p>
                 </div>
               ) : (
-                <p>No user data available.</p>
+                <div className="flex flex-col justify-center items-center text-center">
+                  No user data available.</div>
               )}
               <div className="flex justify-center  gap-2">
                 <button className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded hover:bg-gray-300">

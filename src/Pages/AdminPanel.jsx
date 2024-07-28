@@ -42,7 +42,7 @@ const AdminPanel = () => {
       <nav className="bg-white border-b border-gray-200 dark:bg-gray-800">
         <div className="relative max-w-screen-4xl flex items-center justify-between mx-auto px-4 py-3 ">
           {/* Logo and Brand Name */}
-          <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <a href="/adminpanel" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={CarsHeaven} className="h-12" alt="CarsHeaven Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               CarsHeaven
@@ -66,14 +66,6 @@ const AdminPanel = () => {
                   alt="user photo"
                 />
               </button>
-
-              {/* <Link to="/Login"
-                type="submit"
-                className="flex justify-center items-center w-full bg-red-600 text-white py-2 px-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-              >
-                <FiLogOut />
-                <span>Log Out</span>
-              </Link> */}
               <button onClick={handleLogout}
                 type="submit"
                 className="flex justify-center items-center w-full bg-red-600 text-white py-2 px-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
@@ -90,7 +82,7 @@ const AdminPanel = () => {
                   <span className="block text-sm font-medium text-gray-900 dark:text-white">Akash Kumar</span>
                   <span className="block text-sm text-gray-500 truncate dark:text-gray-400">akash581999@gmail.com</span>
                 </div>
-                <ul className="py-2">
+                {/* <ul className="py-2">
                   <li>
                     <Link
                       to="/userprofile"
@@ -101,7 +93,7 @@ const AdminPanel = () => {
                   </li>
                   <li>
                     <Link
-                      to="/userprofile"
+                      to="/editprofile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Edit Profile
@@ -122,14 +114,8 @@ const AdminPanel = () => {
                     >
                       Logout
                     </Link>
-                    {/* <Link
-                      to="/login"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Logout
-                    </Link> */}
                   </li>
-                </ul>
+                </ul> */}
               </div>
             )}
           </div>
@@ -208,7 +194,7 @@ const AdminPanel = () => {
                 onClick={() => handleTabClick('get')}
                 type="button"
               >
-                Get Car
+                Search Car
               </button>
             </li>
 

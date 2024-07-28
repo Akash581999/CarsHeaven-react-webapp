@@ -117,56 +117,67 @@ const UserProfile = () => {
           </div>
 
           <div className="flex justify-center bg-white rounded-lg shadow p-6">
-            <div className="space-y-4 w-full md:w-1/2">
+            <div className="w-full md:w-1/2">
               {Object.keys(userData).length > 0 ? (
-                <div className="flex flex-col justify-center items-start space-y-2">
-                  <p>
-                    <strong>Role:</strong> {userData.Role}
-                  </p>
-                  <p>
-                    <strong>User Id:</strong> {userData.UserId}
-                  </p>
-                  <p>
-                    <strong>Username:</strong> {userData.UserName}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {userData.Email}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {userData.Phone}
-                  </p>
-                  <p>
-                    <strong>Address:</strong> {userData.Address}
-                  </p>
-                  <p>
-                    <strong>Created On:</strong> {userData.RegistrationDate}
-                  </p>
-                  <p className="flex flex-row justify-center items-center">
-                    <strong>Email Verified:</strong>&nbsp;
-                    <span>
-                      {userData.IsEmailVerified ? (
-                        <RiMailCheckFill />
-                      ) : (
-                        <MdAttachEmail />
-                      )}
-                    </span>
-                  </p>
-                  <p className="flex flex-row justify-center items-center">
-                    <strong>Phone Verified:</strong>&nbsp;
-                    <span>
-                      {userData.IsPhoneVerified ? (
-                        <TbPhoneCheck />
-                      ) : (
-                        <HiPhoneMissedCall />
-                      )}
-                    </span>
-                  </p>
-                </div>
+                <table className="w-full table-fixed">
+                  <tbody>
+                    <tr>
+                      <td className="font-bold">Role:</td>
+                      <td>{userData.Role}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">User Id:</td>
+                      <td>{userData.UserId}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Username:</td>
+                      <td>{userData.UserName}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Email:</td>
+                      <td>{userData.Email}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Phone:</td>
+                      <td>{userData.Phone}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Address:</td>
+                      <td>{userData.Address}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Created On:</td>
+                      <td>{userData.RegistrationDate}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Email Verified:</td>
+                      <td className="flex items-center">
+                        {userData.IsEmailVerified ? (
+                          <RiMailCheckFill />
+                        ) : (
+                          <MdAttachEmail />
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold">Phone Verified:</td>
+                      <td className="flex items-center">
+                        {userData.IsPhoneVerified ? (
+                          <TbPhoneCheck />
+                        ) : (
+                          <HiPhoneMissedCall />
+                        )}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               ) : (
-                <p>No user data available.</p>
+                <div className="flex flex-col justify-center items-center text-center">
+                  No user data available.</div>
               )}
             </div>
           </div>
+
         </div>
       </div>
     </section>
