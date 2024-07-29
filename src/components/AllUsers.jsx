@@ -71,14 +71,14 @@ const AllUsers = () => {
               <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Registration Date
               </th>
-              {/* <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                                Last Login
-                            </th> */}
               <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Role
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Profile Pic
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                Options
               </th>
             </tr>
           </thead>
@@ -109,9 +109,6 @@ const AllUsers = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {user.registrationDate}
                 </td>
-                {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {user.lastLogin}
-                                </td> */}
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {user.role}
                 </td>
@@ -121,6 +118,9 @@ const AllUsers = () => {
                     alt="Profile"
                     className="w-8 h-8 rounded-full"
                   />
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <button>hello</button>
                 </td>
               </tr>
             ))}

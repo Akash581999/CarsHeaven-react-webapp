@@ -1,14 +1,14 @@
 // import React from 'react';
 import { useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import CarsHeaven from "../assets/SVG Files/sportcar.svg";
 import AllCars from "../components/AllCars";
-import SearchCars from '../components/SearchCars';
+import SearchCars from "../components/SearchCars";
 import { FiLogOut } from "react-icons/fi";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const UserDashboard = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleTabClick = (tabId) => {
@@ -73,7 +73,7 @@ const UserDashboard = () => {
   const handleLogout = () => {
     let Token = sessionStorage.getItem("Token");
     let UserId = sessionStorage.getItem("UserId");
-    if (Token, UserId) {
+    if ((Token, UserId)) {
       sessionStorage.removeItem("Token");
       sessionStorage.removeItem("UserId");
       toast.success("Logout successfully");
@@ -89,7 +89,10 @@ const UserDashboard = () => {
       <nav className="bg-white border-b border-gray-200 dark:bg-gray-800">
         <div className="max-w-screen-4xl flex items-center justify-between mx-auto px-4 py-3">
           {/* Logo and Brand Name */}
-          <a href="/userdashboard" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <a
+            href="/userdashboard"
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+          >
             <img src={CarsHeaven} className="h-12" alt="CarsHeaven Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               CarsHeaven
@@ -108,16 +111,17 @@ const UserDashboard = () => {
                 <span className="sr-only">Open user menu</span>
                 <img
                   className="w-16 h-10 rounded-full"
-                  // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                   src={profilePic}
                   alt="user photo"
                 />
               </button>
-              <button onClick={handleLogout}
+              <button
+                onClick={handleLogout}
                 type="submit"
                 className="flex justify-center items-center w-full bg-red-600 text-white py-2 px-2 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
               >
-                <FiLogOut />&nbsp;
+                <FiLogOut />
+                &nbsp;
                 <span>Log Out</span>
               </button>
             </div>
@@ -125,19 +129,21 @@ const UserDashboard = () => {
             {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute right-10 mt-12 w-56 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-700 dark:divide-gray-600">
-                {/* <div className="px-4 py-3">
-                  <span className="block text-sm font-medium text-gray-900 dark:text-white">Akash Kumar</span>
-                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">akash581999@gmail.com</span>
-                </div> */}
                 {Object.keys(userData).length > 0 ? (
                   <>
                     <div className="px-4 py-3">
-                      <span className="block text-sm font-medium text-gray-900 dark:text-white">{userData.UserName}</span>
-                      <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{userData.Email}</span>
+                      <span className="block text-sm font-medium text-gray-900 dark:text-white">
+                        {userData.UserName}
+                      </span>
+                      <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
+                        {userData.Email}
+                      </span>
                     </div>
                   </>
                 ) : (
-                  <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">User data not found.</p>
+                  <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                    User data not found.
+                  </p>
                 )}
                 <ul className="py-2">
                   <li>
@@ -165,7 +171,8 @@ const UserDashboard = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link type='button'
+                    <Link
+                      type="button"
                       onClick={handleLogout}
                       className="block px-4 py-2 text-sm text-gray-700 dark:hover:bg-red-600 dark:text-gray-200 dark:hover:text-white"
                     >
@@ -211,8 +218,12 @@ const UserDashboard = () => {
           <ul className="space-y-2">
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'dashboard' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('dashboard')}
+                className={`w-full py-2 text-left font-medium ${
+                  activeTab === "dashboard"
+                    ? "text-blue-600 dark:text-blue-300"
+                    : "text-gray-600 dark:text-gray-300"
+                }`}
+                onClick={() => handleTabClick("dashboard")}
                 type="button"
               >
                 Dashboard
@@ -220,8 +231,12 @@ const UserDashboard = () => {
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'search' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('search')}
+                className={`w-full py-2 text-left font-medium ${
+                  activeTab === "search"
+                    ? "text-blue-600 dark:text-blue-300"
+                    : "text-gray-600 dark:text-gray-300"
+                }`}
+                onClick={() => handleTabClick("search")}
                 type="button"
               >
                 Search
@@ -229,8 +244,12 @@ const UserDashboard = () => {
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'wishlist' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('wishlist')}
+                className={`w-full py-2 text-left font-medium ${
+                  activeTab === "wishlist"
+                    ? "text-blue-600 dark:text-blue-300"
+                    : "text-gray-600 dark:text-gray-300"
+                }`}
+                onClick={() => handleTabClick("wishlist")}
                 type="button"
               >
                 Wishlist
@@ -238,8 +257,12 @@ const UserDashboard = () => {
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${activeTab === 'orders' ? 'text-blue-600 dark:text-blue-300' : 'text-gray-600 dark:text-gray-300'}`}
-                onClick={() => handleTabClick('orders')}
+                className={`w-full py-2 text-left font-medium ${
+                  activeTab === "orders"
+                    ? "text-blue-600 dark:text-blue-300"
+                    : "text-gray-600 dark:text-gray-300"
+                }`}
+                onClick={() => handleTabClick("orders")}
                 type="button"
               >
                 Orders
@@ -248,22 +271,17 @@ const UserDashboard = () => {
           </ul>
         </div>
 
-        {/* Content Area */}
         <div className="flex-1 p-4">
-          {/* Tab Content */}
-          <div className={`${activeTab !== 'dashboard' && 'hidden'}`}>
-            {/* <AllProducts /> */}
+          <div className={`${activeTab !== "dashboard" && "hidden"}`}>
             <AllCars />
-            {/* <VehicleCards /> */}
           </div>
-          <div className={`${activeTab !== 'search' && 'hidden'}`}>
+          <div className={`${activeTab !== "search" && "hidden"}`}>
             <SearchCars />
-            {/* <Booking /> */}
           </div>
-          <div className={`${activeTab !== 'wishlist' && 'hidden'}`}>
+          <div className={`${activeTab !== "wishlist" && "hidden"}`}>
             {/* <AllWishlists /> */}
           </div>
-          <div className={`${activeTab !== 'orders' && 'hidden'}`}>
+          <div className={`${activeTab !== "orders" && "hidden"}`}>
             {/* <AllOrders /> */}
           </div>
         </div>

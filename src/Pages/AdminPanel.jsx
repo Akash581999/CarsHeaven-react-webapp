@@ -2,13 +2,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CarsHeaven from "../assets/SVG Files/sportcar.svg";
-import AddCars from "../components/AddCars";
-import EditCars from "../components/EditCars";
 import AllUsers from "./../components/AllUsers";
-import SearchCars from "../components/SearchCars";
-import DeleteCar from "../components/DeleteCar";
 import { FiLogOut } from "react-icons/fi";
 import { toast } from "react-toastify";
+import CarsPage from "./CarsPage";
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState("users");
@@ -139,59 +136,59 @@ const AdminPanel = () => {
                 onClick={() => handleTabClick("users")}
                 type="button"
               >
-                All Users
+                Users
               </button>
             </li>
             <li>
               <button
                 className={`w-full py-2 text-left font-medium ${
-                  activeTab === "add"
+                  activeTab === "cars"
                     ? "text-blue-600 dark:text-blue-300"
                     : "text-gray-600 dark:text-gray-300"
                 }`}
-                onClick={() => handleTabClick("add")}
+                onClick={() => handleTabClick("cars")}
                 type="button"
               >
-                Add Car
+                Cars
               </button>
             </li>
             <li>
               <button
                 className={`w-full py-2 text-left font-medium ${
-                  activeTab === "edit"
+                  activeTab === "rentals"
                     ? "text-blue-600 dark:text-blue-300"
                     : "text-gray-600 dark:text-gray-300"
                 }`}
-                onClick={() => handleTabClick("edit")}
+                onClick={() => handleTabClick("rentals")}
                 type="button"
               >
-                Edit Car
+                Rentals
               </button>
             </li>
             <li>
               <button
                 className={`w-full py-2 text-left font-medium ${
-                  activeTab === "delete"
+                  activeTab === "drivers"
                     ? "text-blue-600 dark:text-blue-300"
                     : "text-gray-600 dark:text-gray-300"
                 }`}
-                onClick={() => handleTabClick("delete")}
+                onClick={() => handleTabClick("drivers")}
                 type="button"
               >
-                Delete Car
+                Drivers
               </button>
             </li>
             <li>
               <button
                 className={`w-full py-2 text-left font-medium ${
-                  activeTab === "search"
+                  activeTab === "feedbacks"
                     ? "text-blue-600 dark:text-blue-300"
                     : "text-gray-600 dark:text-gray-300"
                 }`}
-                onClick={() => handleTabClick("search")}
+                onClick={() => handleTabClick("feedbacks")}
                 type="button"
               >
-                Search Car
+                Feedbacks
               </button>
             </li>
           </ul>
@@ -203,17 +200,17 @@ const AdminPanel = () => {
           <div className={`${activeTab !== "users" && "hidden"}`}>
             <AllUsers />
           </div>
-          <div className={`${activeTab !== "add" && "hidden"}`}>
-            <AddCars />
+          <div className={`${activeTab !== "cars" && "hidden"}`}>
+            <CarsPage />
           </div>
-          <div className={`${activeTab !== "edit" && "hidden"}`}>
-            <EditCars />
+          <div className={`${activeTab !== "rentals" && "hidden"}`}>
+            Rentals coming soon....
           </div>
-          <div className={`${activeTab !== "delete" && "hidden"}`}>
-            <DeleteCar />
+          <div className={`${activeTab !== "drivers" && "hidden"}`}>
+            Drivers coming soon....
           </div>
-          <div className={`${activeTab !== "search" && "hidden"}`}>
-            <SearchCars />
+          <div className={`${activeTab !== "feedbacks" && "hidden"}`}>
+            Feedbacks coming soon....
           </div>
         </div>
       </div>
