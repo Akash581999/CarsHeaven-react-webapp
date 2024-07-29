@@ -130,7 +130,6 @@ const ForgotPage = () => {
     return <Navigate to="/Login" />;
   }
 
-
   return (
     <>
       <div

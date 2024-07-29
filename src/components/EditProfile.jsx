@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { MdAttachEmail } from "react-icons/md";
-import { RiMailCheckFill } from "react-icons/ri";
-import { TbPhoneCheck } from "react-icons/tb";
-import { HiPhoneMissedCall } from "react-icons/hi";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({});
-  const [updatePic, setUpdatePic] = useState({});
-
   const [profilePic, setProfilePic] = useState(
     "https://via.placeholder.com/100"
   );
+  const [isEditingPic, setIsEditingPic] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -24,6 +19,14 @@ const EditProfile = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const fetchUserCalled = useRef(false);
 
   useEffect(() => {
@@ -34,9 +37,6 @@ const EditProfile = () => {
   }, []);
 
   let userId = sessionStorage.getItem("UserId");
-
-  console.log(userId);
-
   const fetchUser = async () => {
     const requestData = {
       eventID: "1002",
@@ -45,7 +45,6 @@ const EditProfile = () => {
         Email: userId,
       },
     };
-
     try {
       const response = await fetch("http://localhost:2005/users", {
         method: "POST",
@@ -58,10 +57,7 @@ const EditProfile = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
       const data = await response.json();
-      console.log(data, "API response data");
-
       if (data.rData && data.rData.rCode === 0) {
         setUserData(data.rData);
         setProfilePic(
@@ -77,19 +73,15 @@ const EditProfile = () => {
       setUserData({});
     }
   };
-
-  sessionStorage.getItem("UserId");
-  let UserId = sessionStorage.getItem("UserId");
 
   const handleUpdatePic = async () => {
     const requestData = {
       eventID: "1002",
       addInfo: {
-        Email: UserId,
+        Email: userId,
         ProfilePic: profilePic,
       },
     };
-    console.log(requestData, "requestData");
     try {
       const response = await fetch("http://localhost:2005/editProfile", {
         method: "POST",
@@ -98,14 +90,10 @@ const EditProfile = () => {
         },
         body: JSON.stringify(requestData),
       });
-
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
       const data = await response.json();
-      console.log(data, "API response data edit pic");
-
       if (data.rData && data.rData.rCode === 0) {
         setUserData(data.rData);
         setProfilePic(
@@ -120,20 +108,17 @@ const EditProfile = () => {
       alert("An error occurred while trying to fetch user details.");
       setUserData({});
     }
+    setIsEditingPic(false);
   };
-
-  const uuUserId = sessionStorage.getItem("UserId");
-  console.log("uuid for delete", uuUserId);
 
   const handleDeletePic = async () => {
     const requestData = {
       eventID: "1003",
       addInfo: {
-        Email: uuUserId,
+        Email: userId,
         ProfilePic: profilePic,
       },
     };
-    console.log(requestData, "requestData");
     try {
       const response = await fetch("http://localhost:2005/editProfile", {
         method: "POST",
@@ -142,19 +127,13 @@ const EditProfile = () => {
         },
         body: JSON.stringify(requestData),
       });
-
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
       const data = await response.json();
-      console.log(data, "API response data eddit pic");
-
       if (data.rData && data.rData.rCode === 0) {
         setUserData(data.rData);
-        setProfilePic(
-          data.rData.ProfilePic || "https://via.placeholder.com/100"
-        );
+        setProfilePic("https://via.placeholder.com/100");
       } else {
         setUserData({});
         alert("Failed to get user details!!");
@@ -164,10 +143,51 @@ const EditProfile = () => {
       alert("An error occurred while trying to fetch user details.");
       setUserData({});
     }
+    setIsEditingPic(false);
+  };
+
+  const handleEditInfo = async (event) => {
+    event.preventDefault();
+    const requestData = {
+      eventID: "1001",
+      addInfo: {
+        UserId: userData.UserId,
+        FirstName: userData.FirstName,
+        LastName: userData.LastName,
+        UserName: userData.UserName,
+        Email: userData.Email,
+        Phone: userData.Phone,
+        Address: userData.Address,
+      },
+    };
+    try {
+      const response = await fetch("http://localhost:2005/editProfile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      if (data.rData && data.rData.rCode === 0) {
+        setUserData(data.rData);
+        alert("User details updated successfully");
+      } else {
+        setUserData({});
+        alert("Failed to update user details!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while trying to update user details!!");
+      setUserData({});
+    }
   };
 
   return (
-    <section className="bg-gray-200 h-screen">
+    <section className="bg-gray-200 h-[100%]">
       <div className="container mx-auto py-4">
         <div className="mb-4">
           <nav className="bg-white rounded p-3 shadow">
@@ -203,7 +223,6 @@ const EditProfile = () => {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="text-center">
               <img
-                // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                 src={profilePic}
                 alt="Profile pic"
                 className="rounded-full mx-auto"
@@ -224,20 +243,39 @@ const EditProfile = () => {
                 <p>No user data available.</p>
               )}
               <div className="flex justify-center items-center text-center">
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="m-1"
-                  onChange={handleFileChange}
-                />
+                {isEditingPic ? (
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="m-1"
+                    onChange={handleFileChange}
+                  />
+                ) : null}
               </div>
               <div className="flex justify-center space-x-2 mt-4">
-                <button
-                  onClick={handleUpdatePic}
-                  className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
-                >
-                  Update
-                </button>
+                {isEditingPic ? (
+                  <>
+                    <button
+                      onClick={handleUpdatePic}
+                      className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => setIsEditingPic(false)}
+                      className="bg-yellow-500 text-white font-bold py-2 px-4 rounded hover:bg-yellow-700"
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => setIsEditingPic(true)}
+                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
+                  >
+                    Change
+                  </button>
+                )}
                 <button
                   onClick={handleDeletePic}
                   className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700"
@@ -251,71 +289,120 @@ const EditProfile = () => {
           <div className="flex justify-center bg-white rounded-lg shadow p-6">
             <div className="space-y-4 w-[50%]">
               {Object.keys(userData).length > 0 ? (
-                <div className="flex flex-col justify-center items-start space-y-2">
-                  <p>
-                    <strong>Role:</strong> {userData.Role}
-                  </p>
-                  <p>
-                    <strong>User Id:</strong> {userData.UserId}
-                  </p>
-                  <p>
-                    <strong>Username:</strong> {userData.UserName}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {userData.Email}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {userData.Phone}
-                  </p>
-                  <p>
-                    <strong>Address:</strong> {userData.Address}
-                  </p>
-                  <p>
-                    <strong>Created On:</strong> {userData.RegistrationDate}
-                  </p>
-                  <p className="flex flex-row justify-center items-center">
-                    <strong>Email Verified:</strong>&nbsp;
-                    <span>
-                      {userData.IsEmailVerified ? (
-                        <RiMailCheckFill />
-                      ) : (
-                        <MdAttachEmail />
-                      )}
-                    </span>
-                  </p>
-                  <p className="flex flex-row justify-center items-center">
-                    <strong>Phone Verified:</strong>&nbsp;
-                    <span>
-                      {userData.IsPhoneVerified ? (
-                        <TbPhoneCheck />
-                      ) : (
-                        <HiPhoneMissedCall />
-                      )}
-                    </span>
-                  </p>
+                <div className="overflow-x-auto">
+                  <h1 className="font-bold text-center text-blue-500">
+                    Personal Information:
+                  </h1>
+                  <form onSubmit={handleEditInfo}>
+                    <div className="grid grid-cols-1 gap-4">
+                      <div>
+                        <label htmlFor="UserId" className="font-bold">
+                          User Id:
+                        </label>
+                        <input
+                          type="text"
+                          name="UserId"
+                          value={userData.UserId || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                          readOnly
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="UserName" className="font-bold">
+                          Username:
+                        </label>
+                        <input
+                          type="text"
+                          name="UserName"
+                          value={userData.UserName || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="FirstName" className="font-bold">
+                          First Name:
+                        </label>
+                        <input
+                          type="text"
+                          name="FirstName"
+                          value={userData.FirstName || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="LastName" className="font-bold">
+                          Last Name:
+                        </label>
+                        <input
+                          type="text"
+                          name="LastName"
+                          value={userData.LastName || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="Email" className="font-bold">
+                          Email:
+                        </label>
+                        <input
+                          type="email"
+                          name="Email"
+                          value={userData.Email || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="Phone" className="font-bold">
+                          Phone:
+                        </label>
+                        <input
+                          type="tel"
+                          name="Phone"
+                          value={userData.Phone || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="Address" className="font-bold">
+                          Address:
+                        </label>
+                        <input
+                          type="text"
+                          name="Address"
+                          value={userData.Address || ""}
+                          onChange={handleInputChange}
+                          className="border rounded py-2 px-3 w-full"
+                        />
+                      </div>
+                      <div className="flex justify-center gap-2">
+                        <button
+                          type="reset"
+                          className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700"
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               ) : (
                 <div className="flex flex-col justify-center items-center text-center">
-                  No user data available.</div>
+                  User data not found.
+                </div>
               )}
-              <div className="flex justify-center  gap-2">
-                <button className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded hover:bg-gray-300">
-                  Edit
-                </button>
-                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
-                  Save
-                </button>
-              </div>
             </div>
-          </div>
-
-          <div className="flex justify-center mt-4 space-x-2">
-            <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
-              Back
-            </button>
-            <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700">
-              Save
-            </button>
           </div>
         </div>
       </div>

@@ -117,67 +117,79 @@ const UserProfile = () => {
           </div>
 
           <div className="flex justify-center bg-white rounded-lg shadow p-6">
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-3/4 lg:w-1/2">
               {Object.keys(userData).length > 0 ? (
-                <table className="w-full table-fixed">
-                  <tbody>
-                    <tr>
-                      <td className="font-bold">Role:</td>
-                      <td>{userData.Role}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">User Id:</td>
-                      <td>{userData.UserId}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Username:</td>
-                      <td>{userData.UserName}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Email:</td>
-                      <td>{userData.Email}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Phone:</td>
-                      <td>{userData.Phone}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Address:</td>
-                      <td>{userData.Address}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Created On:</td>
-                      <td>{userData.RegistrationDate}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Email Verified:</td>
-                      <td className="flex items-center">
-                        {userData.IsEmailVerified ? (
-                          <RiMailCheckFill />
-                        ) : (
-                          <MdAttachEmail />
-                        )}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold">Phone Verified:</td>
-                      <td className="flex items-center">
-                        {userData.IsPhoneVerified ? (
-                          <TbPhoneCheck />
-                        ) : (
-                          <HiPhoneMissedCall />
-                        )}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className="overflow-x-auto">
+                  <table className="w-full table-auto border-collapse text-start">
+                    <tbody>
+                      <tr>
+                        <td className="font-bold border-b py-2" width={50}>
+                          Role Type:
+                        </td>
+                        <td className="border-b py-2" width={50}>
+                          {userData.Role}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">User Id:</td>
+                        <td className="border-b py-2">{userData.UserId}</td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">User Name:</td>
+                        <td className="border-b py-2">{userData.UserName}</td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">Email:</td>
+                        <td className="border-b py-2">{userData.Email}</td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">Phone:</td>
+                        <td className="border-b py-2">{userData.Phone}</td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">Address:</td>
+                        <td className="border-b py-2">{userData.Address}</td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">Created On:</td>
+                        <td className="border-b py-2">
+                          {userData.RegistrationDate}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">
+                          Email Verified:
+                        </td>
+                        <td className="border-b py-2 flex items-center">
+                          {userData.IsEmailVerified ? (
+                            <RiMailCheckFill />
+                          ) : (
+                            <MdAttachEmail />
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold border-b py-2">
+                          Phone Verified:
+                        </td>
+                        <td className=" border-b py-2 flex items-center">
+                          {userData.IsPhoneVerified ? (
+                            <TbPhoneCheck />
+                          ) : (
+                            <HiPhoneMissedCall />
+                          )}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               ) : (
                 <div className="flex flex-col justify-center items-center text-center">
-                  No user data available.</div>
+                  User data not found.
+                </div>
               )}
             </div>
           </div>
-
         </div>
       </div>
     </section>
