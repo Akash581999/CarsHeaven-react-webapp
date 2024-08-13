@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import rst from "../assets/11.jpg";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 const ChangePassword = () => {
   const [userPassword, setUserPassword] = useState("");
@@ -117,7 +117,7 @@ const ChangePassword = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
