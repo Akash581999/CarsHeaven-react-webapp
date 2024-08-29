@@ -171,13 +171,13 @@ const UserDashboard = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      type="button"
+                    <button
                       onClick={handleLogout}
+                      type="submit"
                       className="block px-4 py-2 text-sm text-gray-700 dark:hover:bg-red-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Logout
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -218,11 +218,10 @@ const UserDashboard = () => {
           <ul className="space-y-2">
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${
-                  activeTab === "dashboard"
-                    ? "text-blue-600 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-300"
-                }`}
+                className={`w-full py-2 text-left font-medium ${activeTab === "dashboard"
+                  ? "text-blue-600 dark:text-blue-300"
+                  : "text-gray-600 dark:text-gray-300"
+                  }`}
                 onClick={() => handleTabClick("dashboard")}
                 type="button"
               >
@@ -231,11 +230,10 @@ const UserDashboard = () => {
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${
-                  activeTab === "search"
-                    ? "text-blue-600 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-300"
-                }`}
+                className={`w-full py-2 text-left font-medium ${activeTab === "search"
+                  ? "text-blue-600 dark:text-blue-300"
+                  : "text-gray-600 dark:text-gray-300"
+                  }`}
                 onClick={() => handleTabClick("search")}
                 type="button"
               >
@@ -244,11 +242,10 @@ const UserDashboard = () => {
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${
-                  activeTab === "wishlist"
-                    ? "text-blue-600 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-300"
-                }`}
+                className={`w-full py-2 text-left font-medium ${activeTab === "wishlist"
+                  ? "text-blue-600 dark:text-blue-300"
+                  : "text-gray-600 dark:text-gray-300"
+                  }`}
                 onClick={() => handleTabClick("wishlist")}
                 type="button"
               >
@@ -257,11 +254,10 @@ const UserDashboard = () => {
             </li>
             <li>
               <button
-                className={`w-full py-2 text-left font-medium ${
-                  activeTab === "orders"
-                    ? "text-blue-600 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-300"
-                }`}
+                className={`w-full py-2 text-left font-medium ${activeTab === "orders"
+                  ? "text-blue-600 dark:text-blue-300"
+                  : "text-gray-600 dark:text-gray-300"
+                  }`}
                 onClick={() => handleTabClick("orders")}
                 type="button"
               >
